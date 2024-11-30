@@ -13,6 +13,9 @@ val latoFontFamily = FontFamily(
     Font(R.font.lato_medium, weight = FontWeight.W500),
     Font(R.font.lato_bold, weight = FontWeight.W700),
 )
+val interFontFamily = FontFamily(
+    Font(R.font.inter_regular, weight = FontWeight.W400)
+)
 
 // Set of Material typography styles to start with
 val Typography = Typography(

@@ -1,4 +1,4 @@
-package com.example.fintechapp.screens.onboarding.components
+package com.example.fintechapp.ui.onboarding.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,7 +14,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.fintechapp.common.AppTypography
+import com.example.fintechapp.common.AppTextStyle
 import com.example.fintechapp.core.model.OnboardingModel
 import com.example.fintechapp.core.model.onBoardingModelList
 
@@ -27,7 +27,7 @@ fun OnBoardingContent(onBoardingModel: OnboardingModel) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 30.dp),
-            style = AppTypography().getLatoBoldFontStyle(fontSize = 18.sp)
+            style = AppTextStyle.latoBoldFontStyle.copy(fontSize = 18.sp)
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
@@ -36,7 +36,7 @@ fun OnBoardingContent(onBoardingModel: OnboardingModel) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 30.dp),
-            style = AppTypography().getLatoRegularFontStyle(fontSize = 14.sp)
+            style = AppTextStyle.latoRegularFontStyle.copy(fontSize = 14.sp)
         )
     }
 }

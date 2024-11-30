@@ -1,4 +1,4 @@
-package com.example.fintechapp.screens.onboarding.components
+package com.example.fintechapp.ui.onboarding.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

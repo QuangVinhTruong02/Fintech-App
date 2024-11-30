@@ -9,15 +9,15 @@ data class OnboardingModel(
 
 val onBoardingModelList = listOf(
     OnboardingModel(
-        title = AppLanguage.title1,
-        description = AppLanguage.description1
+        title = AppLanguage.CONVENIENT_PERSONAL_LOANS,
+        description = AppLanguage.WHERE_YOU_ARE_EMPLOYED
     ),
     OnboardingModel(
-        title = AppLanguage.title2,
-        description = AppLanguage.description2
+        title = AppLanguage.EASY_PAYMENT_ONLINE,
+        description = AppLanguage.MAKE_YOUR_PAYMENT
     ),
     OnboardingModel(
-        title = AppLanguage.title1,
-        description = AppLanguage.title2
+        title = AppLanguage.CONVENIENT_PERSONAL_LOANS,
+        description = AppLanguage.WHERE_YOU_ARE_EMPLOYED
     ),
 )

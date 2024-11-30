@@ -1,6 +1,5 @@
-package com.example.fintechapp.screens.onboarding
+package com.example.fintechapp.ui.onboarding
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,17 +13,22 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.fintechapp.common.AppColor
 import com.example.fintechapp.common.AppLanguage
+import com.example.fintechapp.core.helper.Routers
 import com.example.fintechapp.core.model.onBoardingModelList
-import com.example.fintechapp.screens.onboarding.components.OnBoardingContent
-import com.example.fintechapp.screens.onboarding.components.OnBoardingPage
-import com.example.fintechapp.screens.onboarding.components.PageIndicator
-import com.example.fintechapp.screens.ulti.CustomButton
+import com.example.fintechapp.ui.onboarding.components.OnBoardingContent
+import com.example.fintechapp.ui.onboarding.components.OnBoardingPage
+import com.example.fintechapp.ui.onboarding.components.PageIndicator
+import com.example.fintechapp.ui.fun_compose.CustomButton
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun OnBoardingScreen() {
+fun OnboardingScreen(
+    navController: NavController,
+    viewModel: OnboardingViewModel = viewModel()
+) {
     Column(modifier = Modifier.fillMaxSize()) {
         val pagerState = rememberPagerState(initialPage = 0) {
             onBoardingModelList.size
@@ -43,9 +47,9 @@ fun OnBoardingScreen() {
         }
         Spacer(modifier = Modifier.height(48.dp))
         CustomButton(
-            onClick = {},
+            onClick = {navController.navigate(Routers.SignUp.destination)},
             buttonColor = AppColor.orange,
-            contentText = AppLanguage.registerNow,
+            contentText = AppLanguage.REGISTER_NOW,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 30.dp)
@@ -54,7 +58,7 @@ fun OnBoardingScreen() {
         CustomButton(
             onClick = {},
             buttonColor = AppColor.darkBlue,
-            contentText = AppLanguage.alreadyHaveAnAccount,
+            contentText = AppLanguage.ALREADY_HAVE_AN_ACCOUNT,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 30.dp)

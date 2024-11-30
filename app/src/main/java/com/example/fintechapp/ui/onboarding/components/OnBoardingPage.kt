@@ -1,4 +1,4 @@
-package com.example.fintechapp.screens.onboarding.components
+package com.example.fintechapp.ui.onboarding.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -14,10 +14,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.fintechapp.common.AppColor
-import com.example.fintechapp.common.AppResource
+import com.example.fintechapp.common.AppImage
 
 @Composable
 fun OnBoardingPage() {
@@ -38,7 +37,7 @@ fun OnBoardingPage() {
         ) {
             Image(
                 painter = painterResource(
-                    id = AppResource.imgLogoHeader
+                    id = AppImage.imgLogoHeader
                 ),
                 contentDescription = null,
                 modifier = Modifier
@@ -48,7 +47,7 @@ fun OnBoardingPage() {
             )
             Image(
                 painter = painterResource(
-                    id = AppResource.imgOnBoarding
+                    id = AppImage.imgOnBoarding
                 ),
                 contentDescription = null,
                 modifier = Modifier
