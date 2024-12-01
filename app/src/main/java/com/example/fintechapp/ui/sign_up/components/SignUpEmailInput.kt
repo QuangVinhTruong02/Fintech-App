@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.fintechapp.common.AppColor
 import com.example.fintechapp.common.AppIcon
 import com.example.fintechapp.common.AppLanguage
@@ -31,7 +30,7 @@ fun SignUpEmailInput(viewModel: SignUpViewModel) {
         hintText = AppLanguage.ENTER_EMAIL,
         leadingIcon = AppIcon.icLetter,
         onValidate = {
-            Validation().validatePhoneNumber(viewModel.emailTextInput)
+            Validation().validateEmail(viewModel.emailTextInput)
         },
         onValueChanged = {
             viewModel.emailTextInput = it

@@ -36,9 +36,9 @@ fun SignUpPasswordInput(viewModel: SignUpViewModel) {
         hintText = AppLanguage.ENTER_PASSWORD,
         leadingIcon = AppIcon.icLock,
         trailingIcon = if(isPasswordHideState) AppIcon.icVisibility else AppIcon.icVisibilityOff,
-//        onValidate = {
-//            Validation().validatePhoneNumber(viewModel.emailTextInput)
-//        },
+        onValidate = {
+            Validation().validatePassword(viewModel.passwordTextInput)
+        },
         isPasswordVisible = isPasswordHideState,
         onValueChanged = {
             viewModel.passwordTextInput = it

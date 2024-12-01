@@ -20,7 +20,7 @@ import com.example.fintechapp.ui.sign_up.SignUpViewModel
 
 @Composable
 fun SignUpConfirmPassword(viewModel: SignUpViewModel) {
-    val isConfirmPasswordHideState : Boolean by viewModel.isConfirmPasswordHideState.collectAsStateWithLifecycle()
+    val isConfirmPasswordHideState: Boolean by viewModel.isConfirmPasswordHideState.collectAsStateWithLifecycle()
     Text(
         AppLanguage.CONFIRM_PASSWORD,
         style = AppTextStyle.latoRegularFontStyle.copy(
@@ -33,10 +33,13 @@ fun SignUpConfirmPassword(viewModel: SignUpViewModel) {
         valueText = viewModel.confirmPasswordTextInput,
         hintText = AppLanguage.ENTER_CONFIRM_PASSWORD,
         leadingIcon = AppIcon.icLock,
-        trailingIcon = if(isConfirmPasswordHideState) AppIcon.icVisibility else AppIcon.icVisibilityOff,
-//        onValidate = {
-//            Validation().validatePhoneNumber(viewModel.emailTextInput)
-//        },
+        trailingIcon = if (isConfirmPasswordHideState) AppIcon.icVisibility else AppIcon.icVisibilityOff,
+        onValidate = {
+            Validation().validateConfirmPassword(
+                password = viewModel.passwordTextInput,
+                confirmPassword = viewModel.confirmPasswordTextInput
+            )
+        },
         isPasswordVisible = isConfirmPasswordHideState,
         onValueChanged = {
             viewModel.confirmPasswordTextInput = it

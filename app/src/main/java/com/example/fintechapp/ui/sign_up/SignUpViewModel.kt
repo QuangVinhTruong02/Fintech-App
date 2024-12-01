@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.fintechapp.core.helper.Validation
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -25,7 +26,17 @@ class SignUpViewModel() : ViewModel() {
 
 
     fun setValueButtonState() {
-        _buttonState.value = emailTextInput.isNotEmpty()
+        if (Validation().validateEmail(emailTextInput) == null
+            && Validation().validatePassword(passwordTextInput) == null
+            && Validation().validateConfirmPassword(
+                password = passwordTextInput,
+                confirmPassword = confirmPasswordTextInput
+            ) == null
+        ) {
+            _buttonState.value = true
+        } else {
+            _buttonState.value = false
+        }
     }
 
     fun onChangeStatePasswordHide() {

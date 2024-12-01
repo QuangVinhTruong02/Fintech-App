@@ -21,4 +21,8 @@ object AppLanguage {
     const val FIELD_CANNOT_BE_EMPTY_ERROR = "Field cannot be empty"
     const val OR = "OR"
     const val LOGIN = "Login"
+    const val PLEASE_ENTER_A_VALID_EMAIL_ADDRESS = "Please enter a valid email address"
+    const val PASSWORD_MINIMUM_EIGHT_CHARACTERS = "Password minimum 8 characters"
+    const val DOES_NOT_MATCH_THE_PASSWORD = "Does not match the password"
+
 }

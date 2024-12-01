@@ -15,17 +15,17 @@ private const val SLASH = "/"
 
 @Composable
 fun NavHostNavigation(
-    navController : NavHostController = rememberNavController()
-){
+    navController: NavHostController = rememberNavController()
+) {
     NavHost(navController = navController, startDestination = Routers.Splash.destination) {
-        composable(Routers.Splash.destination){
+        composable(Routers.Splash.destination) {
             SplashScreen(navController)
         }
-        composable(Routers.Onboarding.destination){
+        composable(Routers.Onboarding.destination) {
             OnboardingScreen(navController)
         }
-        composable(Routers.SignUp.destination){
-            SignUpScreen()
+        composable(Routers.SignUp.destination) {
+            SignUpScreen(navController)
         }
     }
 }

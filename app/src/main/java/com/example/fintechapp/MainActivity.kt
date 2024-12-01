@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.example.fintechapp.ui.base.NavHostNavigation
 import com.example.fintechapp.ui.sign_up.SignUpScreen
 import com.example.fintechapp.ui.theme.FintechAppTheme
 
@@ -15,8 +16,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             FintechAppTheme {
-//                NavHostHelper()
-                SignUpScreen()
+                NavHostNavigation()
+//                SignUpScreen()
             }
         }
     }
