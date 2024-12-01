@@ -8,6 +8,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.fintechapp.ui.base.NavHostNavigation
 import com.example.fintechapp.ui.sign_up.SignUpScreen
 import com.example.fintechapp.ui.theme.FintechAppTheme
+import com.example.fintechapp.ui.user_profile.UserProfileScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +18,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             FintechAppTheme {
                 NavHostNavigation()
-//                SignUpScreen()
+//                UserProfileScreen()
             }
         }
     }

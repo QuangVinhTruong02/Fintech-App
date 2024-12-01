@@ -9,6 +9,7 @@ import com.example.fintechapp.core.helper.Routers
 import com.example.fintechapp.ui.sign_up.SignUpScreen
 import com.example.fintechapp.ui.onboarding.OnboardingScreen
 import com.example.fintechapp.ui.splash.SplashScreen
+import com.example.fintechapp.ui.user_profile.UserProfileScreen
 
 private const val SLASH = "/"
 
@@ -26,6 +27,9 @@ fun NavHostNavigation(
         }
         composable(Routers.SignUp.destination) {
             SignUpScreen(navController)
+        }
+        composable(Routers.UserProfile.destination) {
+            UserProfileScreen(navController)
         }
     }
 }

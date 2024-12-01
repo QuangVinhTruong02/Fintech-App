@@ -12,4 +12,5 @@ object AppIcon {
     val icVisibilityOff : Int = R.drawable.ic_visibility_off
     val icGoogle : Int = R.drawable.ic_google
     val icFacebook : Int = R.drawable.ic_facebook
+    val icCalendar : Int = R.drawable.ic_calendar
 }

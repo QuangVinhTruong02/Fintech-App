@@ -1,4 +1,4 @@
-package com.example.fintechapp.ui.sign_up
+package com.example.fintechapp.ui.user_profile
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -19,7 +19,6 @@ import androidx.navigation.NavController
 import com.example.fintechapp.common.AppColor
 import com.example.fintechapp.common.AppLanguage
 import com.example.fintechapp.common.AppTextStyle
-import com.example.fintechapp.core.helper.Routers
 import com.example.fintechapp.ui.fun_compose.AppTopBar
 import com.example.fintechapp.ui.sign_up.components.SignUpAlreadyHaveAccount
 import com.example.fintechapp.ui.sign_up.components.SignUpAnotherIcon
@@ -28,56 +27,46 @@ import com.example.fintechapp.ui.sign_up.components.SignUpContinueButton
 import com.example.fintechapp.ui.sign_up.components.SignUpEmailInput
 import com.example.fintechapp.ui.sign_up.components.SignUpOrText
 import com.example.fintechapp.ui.sign_up.components.SignUpPasswordInput
+import com.example.fintechapp.ui.user_profile.components.UserProfileCreateButton
+import com.example.fintechapp.ui.user_profile.components.UserProfileDateOfBirthInput
+import com.example.fintechapp.ui.user_profile.components.UserProfileFirstNameInput
+import com.example.fintechapp.ui.user_profile.components.UserProfileLastNameInput
 
 @Composable
-fun SignUpScreen(
+fun UserProfileScreen(
     navController: NavController,
-    viewModel: SignUpViewModel = viewModel()
+    viewModel: UserProfileViewModel = viewModel()
 ) {
     val scrollState = rememberScrollState()
-    Scaffold(topBar = {
-        AppTopBar(onBackNavigation = {navController.popBackStack()})
-    }) { paddingValues ->
+    Scaffold() { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .padding(23.dp)
+                .padding(start = 23.dp, end = 23.dp, top = 55.dp)
                 .verticalScroll(scrollState)
                 .imePadding()
         ) {
             Text(
-                AppLanguage.HI_THERE, style = AppTextStyle.latoBoldFontStyle.copy(
+                AppLanguage.PERSONAL_DETAILS, style = AppTextStyle.latoBoldFontStyle.copy(
                     fontSize = 24.sp, color = AppColor.darkBlue
                 )
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                AppLanguage.JOIN_US_CREATE_ACCOUNT_YOUR_TODAY,
+                AppLanguage.ENTER_YOUR_DETAILS,
                 style = AppTextStyle.latoRegularFontStyle.copy(
                     color = AppColor.darkBlue
                 )
             )
             Spacer(modifier = Modifier.height(40.dp))
-            SignUpEmailInput(viewModel)
+            UserProfileFirstNameInput(viewModel)
             Spacer(modifier = Modifier.height(15.dp))
-            SignUpPasswordInput(viewModel)
+            UserProfileLastNameInput(viewModel)
             Spacer(modifier = Modifier.height(15.dp))
-            SignUpConfirmPasswordInput(viewModel)
+            UserProfileDateOfBirthInput(viewModel)
             Spacer(modifier = Modifier.height(15.dp))
-            SignUpContinueButton(viewModel, onPressedContinue = {
-                navController.navigate(Routers.UserProfile.destination){
-                    popUpTo(Routers.SignUp.destination) { inclusive = true }
-                }
-            })
-            Spacer(modifier = Modifier.height(20.dp))
-            SignUpOrText()
-            Spacer(modifier = Modifier.height(20.dp))
-            SignUpAnotherIcon()
-            Spacer(modifier = Modifier.height(20.dp))
-            SignUpAlreadyHaveAccount(
-                onClickLogin = {}
-            )
+            UserProfileCreateButton(viewModel)
         }
     }
 }

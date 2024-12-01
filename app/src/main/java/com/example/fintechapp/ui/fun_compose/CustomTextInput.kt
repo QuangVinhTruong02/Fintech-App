@@ -1,6 +1,10 @@
 package com.example.fintechapp.ui.fun_compose
 
 
+import android.util.Log
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,6 +15,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -36,9 +41,11 @@ fun CustomTextInput(
     keyBoardType: KeyboardType = KeyboardType.Text,
     onValidate: ((String) -> String?)? = null,
     onValueChanged: (String) -> Unit,
+    onTapTextField: (() -> Unit)? = null,
     onPressedTrailingIcon: (() -> Unit)? = null,
     maxChar: Int? = null,
-    isPasswordVisible: Boolean = false
+    isPasswordVisible: Boolean = false,
+    readOnly: Boolean = false
 ) {
     var errorText by remember { mutableStateOf<String?>(null) }
     OutlinedTextField(
@@ -51,7 +58,10 @@ fun CustomTextInput(
         },
         modifier = Modifier
             .fillMaxWidth()
-            .heightIn(min = 50.dp),
+            .heightIn(min = 50.dp)
+            .clickable {
+                onTapTextField?.invoke()
+            },
         shape = RoundedCornerShape(16.dp),
         colors = OutlinedTextFieldDefaults.colors(
             focusedContainerColor = Color.Transparent,
@@ -61,7 +71,17 @@ fun CustomTextInput(
         ),
         textStyle = AppTextStyle.latoMediumFontStyle,
         isError = errorText != null,
-        visualTransformation = if (isPasswordVisible) PasswordVisualTransformation() else  VisualTransformation.None,
+        readOnly = readOnly,
+        visualTransformation = if (isPasswordVisible) PasswordVisualTransformation() else VisualTransformation.None,
+        interactionSource = remember { MutableInteractionSource() }.also { interactionSource ->
+            LaunchedEffect(interactionSource) {
+                interactionSource.interactions.collect {
+                    if (it is PressInteraction.Release) {
+                        onTapTextField?.invoke()
+                    }
+                }
+            }
+        },
         supportingText = {
             errorText?.let { errorText ->
                 Text(

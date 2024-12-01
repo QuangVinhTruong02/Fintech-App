@@ -29,4 +29,11 @@ class Validation {
             else -> null
         }
     }
+
+    fun validateEmpty(value: String): String? {
+        if (value.isEmpty()) {
+            return AppLanguage.FIELD_CANNOT_BE_EMPTY_ERROR
+        }
+        return null
+    }
 }

@@ -24,5 +24,11 @@ object AppLanguage {
     const val PLEASE_ENTER_A_VALID_EMAIL_ADDRESS = "Please enter a valid email address"
     const val PASSWORD_MINIMUM_EIGHT_CHARACTERS = "Password minimum 8 characters"
     const val DOES_NOT_MATCH_THE_PASSWORD = "Does not match the password"
-
+    const val PERSONAL_DETAILS = "Personal Details"
+    const val ENTER_YOUR_DETAILS = "Enter your details as they appear on your legal documents"
+    const val FIRST_NAME = "First Name"
+    const val LAST_NAME = "Last Name"
+    const val DATE_OF_BIRTH = "Date of birth"
+    const val DD_MM_YY = "DD/MM/YY"
+    const val CREATE_ACCOUNT = "Create account"
 }

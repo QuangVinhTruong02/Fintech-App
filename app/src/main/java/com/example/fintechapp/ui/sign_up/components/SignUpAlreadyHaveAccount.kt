@@ -27,7 +27,6 @@ fun SignUpAlreadyHaveAccount(
         withStyle(style = SpanStyle(color = AppColor.darkBlue)) {
             append("${AppLanguage.ALREADY_HAVE_AN_ACCOUNT}? ")
         }
-        val start = length
         pushStringAnnotation(tag = "LOGIN", annotation = "LOGIN_CLICKED")
         withStyle(
             style = SpanStyle(
@@ -38,7 +37,6 @@ fun SignUpAlreadyHaveAccount(
             append(AppLanguage.LOGIN)
         }
         pop()
-        val end = length
     }
 
     Box(

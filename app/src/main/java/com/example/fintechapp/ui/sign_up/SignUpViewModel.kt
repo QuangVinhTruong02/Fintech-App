@@ -24,19 +24,13 @@ class SignUpViewModel() : ViewModel() {
     private val _buttonState = MutableStateFlow<Boolean>(false)
     val buttonState: StateFlow<Boolean> = _buttonState
 
-
     fun setValueButtonState() {
-        if (Validation().validateEmail(emailTextInput) == null
-            && Validation().validatePassword(passwordTextInput) == null
-            && Validation().validateConfirmPassword(
-                password = passwordTextInput,
-                confirmPassword = confirmPasswordTextInput
-            ) == null
-        ) {
-            _buttonState.value = true
-        } else {
-            _buttonState.value = false
-        }
+        _buttonState.value = (Validation().validateEmail(emailTextInput) == null
+                && Validation().validatePassword(passwordTextInput) == null
+                && Validation().validateConfirmPassword(
+            password = passwordTextInput,
+            confirmPassword = confirmPasswordTextInput
+        ) == null)
     }
 
     fun onChangeStatePasswordHide() {

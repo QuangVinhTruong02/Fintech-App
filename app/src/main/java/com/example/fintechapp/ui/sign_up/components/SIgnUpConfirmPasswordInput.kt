@@ -9,7 +9,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.fintechapp.common.AppColor
 import com.example.fintechapp.common.AppIcon
 import com.example.fintechapp.common.AppLanguage
@@ -19,7 +18,7 @@ import com.example.fintechapp.ui.fun_compose.CustomTextInput
 import com.example.fintechapp.ui.sign_up.SignUpViewModel
 
 @Composable
-fun SignUpConfirmPassword(viewModel: SignUpViewModel) {
+fun SignUpConfirmPasswordInput(viewModel: SignUpViewModel) {
     val isConfirmPasswordHideState: Boolean by viewModel.isConfirmPasswordHideState.collectAsStateWithLifecycle()
     Text(
         AppLanguage.CONFIRM_PASSWORD,
