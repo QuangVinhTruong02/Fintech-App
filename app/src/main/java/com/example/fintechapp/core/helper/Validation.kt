@@ -22,6 +22,14 @@ class Validation {
         }
     }
 
+    fun validatePhoneNumber(value: String): String? {
+        return when {
+            value.isEmpty() -> AppLanguage.FIELD_CANNOT_BE_EMPTY_ERROR
+            value.length < 10 -> AppLanguage.PHONE_NUMBER_MUST_HAVE_AT_LEAST_TEN_DIGIT
+            else -> null
+        }
+    }
+
     fun validateConfirmPassword(password: String, confirmPassword: String): String? {
         return when {
             confirmPassword.isEmpty() -> AppLanguage.FIELD_CANNOT_BE_EMPTY_ERROR
