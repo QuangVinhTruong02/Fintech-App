@@ -6,6 +6,7 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
@@ -43,7 +44,8 @@ fun CustomTextInput(
     onPressedTrailingIcon: (() -> Unit)? = null,
     maxChar: Int? = null,
     isPasswordVisible: Boolean = false,
-    readOnly: Boolean = false
+    readOnly: Boolean = false,
+    modifier: Modifier = Modifier
 ) {
     var errorText by remember { mutableStateOf<String?>(null) }
     OutlinedTextField(
@@ -54,13 +56,13 @@ fun CustomTextInput(
             }
             errorText = onValidate?.invoke(newValue)
         },
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
-            .heightIn(min = 50.dp)
+            .heightIn(min = 48.dp)
             .clickable {
                 onTapTextField?.invoke()
             },
-        shape = RoundedCornerShape(16.dp),
+        shape = RoundedCornerShape(8.dp),
         colors = OutlinedTextFieldDefaults.colors(
             focusedContainerColor = Color.Transparent,
             unfocusedContainerColor = Color.Transparent,
@@ -94,7 +96,11 @@ fun CustomTextInput(
         keyboardOptions = KeyboardOptions(keyboardType = keyBoardType),
         singleLine = true,
         leadingIcon = {
-            Icon(painter = painterResource(id = leadingIcon), contentDescription = null)
+            Icon(
+                painter = painterResource(id = leadingIcon),
+                contentDescription = null,
+                modifier = Modifier.size(25.dp)
+            )
         },
         trailingIcon = trailingIcon?.let {
             {
@@ -103,7 +109,8 @@ fun CustomTextInput(
                 ) {
                     Icon(
                         painter = painterResource(id = trailingIcon),
-                        contentDescription = null
+                        contentDescription = null,
+                        modifier = Modifier.size(25.dp)
                     )
                 }
             }

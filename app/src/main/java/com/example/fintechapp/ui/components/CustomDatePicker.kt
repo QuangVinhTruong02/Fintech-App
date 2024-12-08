@@ -41,7 +41,6 @@ fun CustomDatePicker(
     val datePickerDialog = DatePickerDialog(
         context,
         { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
-            Log.d("MYAP", "456")
             mDate.value = "$dayOfMonth/$month/$year"
             onSelectedDateValue(mDate.value)
         },

@@ -1,7 +1,9 @@
 package com.example.fintechapp.ui.components
 
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -29,8 +31,9 @@ fun CustomButton(
             containerColor = buttonColor,
             disabledContainerColor = disabledButtonColor
         ),
-        modifier = modifier.height(48.dp),
-        enabled = buttonState == UIButtonState.Enable
+        modifier = modifier.heightIn(min = 56.dp),
+        enabled = buttonState == UIButtonState.Enable,
+        shape = RoundedCornerShape(8.dp)
     ) {
         when (buttonState) {
             is UIButtonState.Enable -> {

@@ -13,6 +13,9 @@ navigationCompose = "2.8.4"
 googleGmsGoogleServices = "4.4.2"
 firebaseAuth = "23.1.0"
 
+# Data table
+data-table = "0.10.0"
+
 # Retrofit version
 retrofit = "2.11.0"
 retrofit-kotlinx-serialization-converter = "0.8.0"
@@ -44,6 +47,10 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit
 retrofit2-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit-kotlinx-serialization-converter" }
 okhttp-logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp-logging-interceptor" }
 retrofit-converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
+
+#data table
+data-table-material3 = { group = "com.seanproctor", name = "data-table", version.ref = "data-table" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

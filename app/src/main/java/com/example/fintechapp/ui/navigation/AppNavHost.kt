@@ -12,8 +12,6 @@ import com.example.fintechapp.ui.screens.home.HomeScreen
 import com.example.fintechapp.ui.screens.onboarding.OnboardingScreen
 import com.example.fintechapp.ui.screens.splash.SplashScreen
 import com.example.fintechapp.ui.sign_in.SignInScreen
-import com.example.fintechapp.ui.sign_up.SignUpScreen
-import com.example.fintechapp.ui.user_profile.UserProfileScreen
 
 
 @Composable
@@ -36,7 +34,7 @@ fun AppNavHost(
         composable(Screens.Splash.route) {
             SplashScreen(
                 appState = appState,
-//                onNavigateToMain = appNavigation::navigateToHome,
+                onNavigateToMain = appNavigation::navigateToHome,
 //                onNavigateToLogin = appNavigation::navigateToLogin,
                 onNavigateToOnBoarding = appNavigation::navigateToOnboarding
             )
@@ -50,21 +48,6 @@ fun AppNavHost(
             )
         }
 
-        composable(Screens.SignUp.route) {
-            SignUpScreen(
-                appState = appState,
-                onNavigateToUserProfile = appNavigation::navigateToUserProfile,
-            )
-        }
-
-        composable(Screens.UserProfile.route) {
-            UserProfileScreen(
-                appState = appState,
-//                onNavigateToMain = appNavigation::navigateToHome,
-//                onNavigateToLogin = appNavigation::navigateToLogin
-            )
-        }
-
         composable(Screens.SignIn.route) {
             SignInScreen(
                 appState = appState,
@@ -74,8 +57,8 @@ fun AppNavHost(
         }
         composable(Screens.Home.route) {
             HomeScreen(
-                appState = appState,
-//                onNavigateToLogin = appNavigation::navigateToLogin
+//                appState = appState,
+                onNavigateToSignIn = appNavigation::navigateToSignIn
             )
         }
 

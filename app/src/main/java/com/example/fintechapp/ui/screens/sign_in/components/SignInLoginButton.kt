@@ -16,7 +16,6 @@ fun SignInLoginButton(
     viewModel: SignInViewModel,
     onPressedLogin: () -> Unit
 ) {
-    val buttonState: Boolean by viewModel.enableButtonState.collectAsStateWithLifecycle()
     val buttonStateFlow: UIButtonState by viewModel.buttonStateFlow.collectAsStateWithLifecycle()
     CustomButton(
         buttonColor = AppColor.darkBlue,

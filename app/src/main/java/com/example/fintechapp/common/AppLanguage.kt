@@ -1,6 +1,7 @@
 package com.example.fintechapp.common
 
 object AppLanguage {
+    const val DTGENTA = "DTGenta"
     const val CONVENIENT_PERSONAL_LOANS: String = "Convenient Personal Loans"
     const val EASY_PAYMENT_ONLINE: String = "Easy Payment Online"
     const val WHERE_YOU_ARE_EMPLOYED: String =
@@ -24,7 +25,8 @@ object AppLanguage {
     const val LOGIN = "Login"
     const val PLEASE_ENTER_A_VALID_EMAIL_ADDRESS = "Please enter a valid email address"
     const val PASSWORD_MINIMUM_EIGHT_CHARACTERS = "Password minimum 8 characters"
-    const val PHONE_NUMBER_MUST_HAVE_AT_LEAST_TEN_DIGIT = "Phone number must have at least 10 digits."
+    const val PHONE_NUMBER_MUST_HAVE_AT_LEAST_TEN_DIGIT =
+        "Phone number must have at least 10 digits."
     const val DOES_NOT_MATCH_THE_PASSWORD = "Does not match the password"
     const val PERSONAL_DETAILS = "Personal Details"
     const val ENTER_YOUR_DETAILS = "Enter your details as they appear on your legal documents"
@@ -33,7 +35,8 @@ object AppLanguage {
     const val DATE_OF_BIRTH = "Date of birth"
     const val DD_MM_YY = "DD/MM/YY"
     const val CREATE_ACCOUNT = "Create account"
-    const val PLEASE_SIGN_IN_TO_YOUR_ACCOUNT = "Please sign-in to your account to unlock all features"
+    const val PLEASE_SIGN_IN_TO_YOUR_ACCOUNT =
+        "Please sign-in to your account to unlock all features"
     const val DO_NOT_HAVE_ACCOUNT = "Don’t have an account?"
     const val SIGN_UP = "Sign Up"
     const val PHONE_NUMBER = "Phone Number"
@@ -42,4 +45,30 @@ object AppLanguage {
     const val INCORRECT_PHONE_NUMBER_OR_PASSWORD = "Incorrect phone number or password"
     const val SOMETHING_WENT_WRONG = "Something went wrong"
     const val FAILED = " Failed"
+    const val AGENT_LIST = "Agent list"
+    const val SEARCH = "Search..."
+    const val NEW_AGENT = "New agent"
+    const val AGENT = "Agent"
+    const val QR_CODE_PRODUCTS = "QR code products"
+    const val GIFT = "Gift"
+    const val WINNING_CODE = "Winning code"
+    const val CLIENT = "Client"
+    const val PROGRAMME = "Programme"
+    const val NOTIFICATION = "Notification"
+    const val ADVERTISEMENT = "advertisement"
+    const val LUCKY_SPIN = "Lucky spin"
+    const val SETTING = "Setting"
+    const val PROFILE = "Profile"
+    const val LOGOUT = "Logout"
+    const val AGENT_NAME = "AGENT NAME"
+    const val AGENT_CODE = "AGENT CODE"
+    const val CITY = "CITY"
+    const val FARMERS_COUNT = "FARMERS COUNT"
+    const val DETAILS = "Detail"
+    const val UPDATE = "Update"
+    const val REMOVE = "Remove"
+    const val CANCEL = "Cancel"
+    const val DELETE_AGENCY = "Delete Agency"
+    const val ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_AGENCY =
+        "Are you sure you want to delete this agent?"
 }

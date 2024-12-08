@@ -6,9 +6,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
 
 
 class AppShared(private val context: Context) {
@@ -16,11 +14,23 @@ class AppShared(private val context: Context) {
 
     companion object {
         val ACCESS_TOKEN = stringPreferencesKey("access_token")
+        val USER_PHONE = stringPreferencesKey("user_phone")
     }
 
-    suspend fun saveToDataStore(accessTokenn: String) {
+    suspend fun saveToUserPhone(phoneNumber: String) {
         context.preferenceDataStore.edit { preferences ->
-            preferences[ACCESS_TOKEN] = accessTokenn
+            preferences[USER_PHONE] = phoneNumber
+        }
+    }
+
+    suspend fun getUserPhone(): String {
+        val preferences = context.preferenceDataStore.data.first() // Lấy dữ liệu 1 lần
+        return preferences[USER_PHONE] ?: ""
+    }
+
+    suspend fun saveToAccessToken(accessToken: String) {
+        context.preferenceDataStore.edit { preferences ->
+            preferences[ACCESS_TOKEN] = accessToken
         }
     }
 
@@ -29,7 +39,8 @@ class AppShared(private val context: Context) {
         return preferences[ACCESS_TOKEN] ?: ""
     }
 
-    suspend fun clearDataStore() = context.preferenceDataStore.edit {
-        it.clear()
+    suspend fun logOut() = context.preferenceDataStore.edit { preferences ->
+        preferences.remove(ACCESS_TOKEN)
+        preferences.remove(USER_PHONE)
     }
 }

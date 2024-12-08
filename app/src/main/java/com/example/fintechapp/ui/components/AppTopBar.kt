@@ -1,5 +1,6 @@
 package com.example.fintechapp.ui.components
 
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -17,28 +18,38 @@ import com.example.fintechapp.common.AppIcon
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppTopBar(
-    title: String = "",
+    titleText: String = "",
     titleSize: TextUnit = 20.sp,
+    titleIcon: Int? = null,
+    leadingIcon: Int? = null,
     backgroundColor: Color = AppColor.white,
-    onBackNavigation: (() -> Unit)? = null,
+    onPressedTitleIcon: (() -> Unit)? = null,
+    onPressedLeading: (() -> Unit)? = null,
+    actions: @Composable RowScope.() -> Unit = {}
 ) {
     TopAppBar(
-        title = { Text(title) },
+        title = {
+            if (titleIcon != null) {
+                IconButton(onClick = { onPressedTitleIcon?.invoke() }) {
+                    Icon(
+                        painter = painterResource(
+                            id = titleIcon
+                        ),
+                        contentDescription = null
+                    )
+                }
+            } else {
+                Text(titleText)
+            }
+        },
         colors = TopAppBarDefaults.largeTopAppBarColors(containerColor = backgroundColor),
-//        actions = {
-//            IconButton(onClick = onMenuClick) {
-//                AppIcon(
-//                    painter = rememberVectorPainter(image = Icons.Filled.Menu),
-//                    tint = contentColor
-//                )
-//            }
-//        },
+        actions = actions,
         navigationIcon = {
-            onBackNavigation?.let {
+            onPressedLeading?.let {
                 IconButton(onClick = it) {
                     Icon(
                         painter = painterResource(
-                            id = AppIcon.icNavigateBack
+                            id = leadingIcon ?: AppIcon.icNavigateBack
                         ),
                         contentDescription = null
                     )

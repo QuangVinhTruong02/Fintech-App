@@ -71,6 +71,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation ("androidx.datastore:datastore-preferences:1.1.1")
+    implementation("com.seanproctor:data-table:0.10.0")
 //    //Retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)

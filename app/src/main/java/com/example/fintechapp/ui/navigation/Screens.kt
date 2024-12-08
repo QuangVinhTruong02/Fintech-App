@@ -8,10 +8,6 @@ open class Screens(val route: String) {
 
     object Home : Screens("home")
 
-    object SignUp : Screens("signUp")
-
-    object UserProfile : Screens("userProfile")
-
     object SignIn : Screens("SignIn")
 
 }

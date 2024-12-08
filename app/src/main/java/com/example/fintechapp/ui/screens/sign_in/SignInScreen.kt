@@ -23,7 +23,6 @@ fun SignInScreen(
 ) {
     val uiStateFlow: UIState<LoginResponse> by viewModel.uiStateFlow.collectAsStateWithLifecycle()
 
-
     when (uiStateFlow) {
         is UIState.Success -> {
             onNavigateToMain.invoke()

@@ -8,6 +8,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentActivity
 import com.example.fintechapp.di.AppModule
 import com.example.fintechapp.ui.base.DtgComposeApp
+import com.example.fintechapp.ui.screens.home.HomeScreen
 
 class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +19,8 @@ class MainActivity : FragmentActivity() {
             val context = LocalContext.current
             AppModule.initContext(context)
             DtgComposeApp()
+//            HomeScreen()
         }
+
     }
 }

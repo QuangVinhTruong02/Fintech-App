@@ -29,9 +29,7 @@ fun SignInView(
     onNavigateBack: () -> Unit
 ) {
     val scrollState = rememberScrollState()
-    Scaffold(topBar = {
-        AppTopBar(onBackNavigation = onNavigateBack)
-    }) { paddingValues ->
+    Scaffold { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -60,9 +58,6 @@ fun SignInView(
             Spacer(modifier = Modifier.height(15.dp))
             SignInLoginButton(viewModel, onPressedLogin = {
                 viewModel.onLogin()
-//                navController.navigate(Routers.UserProfile.destination) {
-//                    popUpTo(Routers.SignUp.destination) { inclusive = true }
-//                }
             })
 
         }

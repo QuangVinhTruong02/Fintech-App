@@ -33,35 +33,17 @@ class AppNavigation(
         }
     }
 
-    fun navigateToSignUp() {
-        navController.navigate(Screens.SignUp.route)
-    }
-
     fun navigateToSignIn() {
-        navController.navigate(Screens.SignIn.route)
-    }
-
-    fun navigateToUserProfile() {
-        navController.navigate(Screens.UserProfile.route)
-    }
-
-    fun navigateToHome(){
-        navController.navigate(Screens.Home.route) {
+        navController.navigate(Screens.SignIn.route) {
             popUpTo(0)
         }
     }
 
-//    fun navigateToHome() {
-//        navController.navigate(Screens.Home.route) {
-//            popUpTo(0)
-//        }
-//    }
-//
-//    fun navigateToLogin() {
-//        navController.navigate(Screens.Login.route) {
-//            popUpTo(0)
-//        }
-//    }
+    fun navigateToHome() {
+        navController.navigate(Screens.Home.route) {
+            popUpTo(0)
+        }
+    }
 
 
     fun navigateBack() {

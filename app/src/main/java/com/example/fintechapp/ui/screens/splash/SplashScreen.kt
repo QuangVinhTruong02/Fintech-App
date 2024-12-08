@@ -19,10 +19,12 @@ import com.example.fintechapp.ui.base.DtgAppState
 fun SplashScreen(
     appState: DtgAppState,
     viewModel: SplashViewModel = viewModel(),
-    onNavigateToOnBoarding: () -> Unit
+    onNavigateToOnBoarding: () -> Unit,
+    onNavigateToMain: () -> Unit
 ) {
     LaunchedEffect(Unit) {
         viewModel.onNavigateToOnBoarding = onNavigateToOnBoarding
+        viewModel.onNavigateToMain = onNavigateToMain
     }
 
     Box(
