@@ -12,7 +12,8 @@ data class AgencyResponse(
     val agentCode: String,
     @SerializedName("phone")
     val phoneNumber: String,
-//    val city: String,
+    @SerializedName("location")
+    val location: LocationResponse,
     @SerializedName("countUser")
     val farmersCount: Int,
     @SerializedName("createdAt")

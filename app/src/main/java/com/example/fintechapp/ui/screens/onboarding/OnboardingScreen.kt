@@ -17,7 +17,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.fintechapp.common.AppColor
 import com.example.fintechapp.common.AppLanguage
-import com.example.fintechapp.core.model.onBoardingModelList
+import com.example.fintechapp.common.model.onBoardingModelList
 import com.example.fintechapp.ui.base.DtgAppState
 import com.example.fintechapp.ui.screens.onboarding.components.OnBoardingContent
 import com.example.fintechapp.ui.screens.onboarding.components.OnBoardingPage

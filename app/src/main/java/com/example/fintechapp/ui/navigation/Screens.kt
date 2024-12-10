@@ -1,5 +1,7 @@
 package com.example.fintechapp.ui.navigation
 
+import com.example.fintechapp.data.response.AgencyResponse
+
 open class Screens(val route: String) {
 
     object Splash : Screens("splash")
@@ -10,4 +12,7 @@ open class Screens(val route: String) {
 
     object SignIn : Screens("SignIn")
 
+    object CreateAgent : Screens("CreateAgent/{agencyId}"){
+        fun createRoute(agencyId: String?): String = "CreateAgent/$agencyId"
+    }
 }

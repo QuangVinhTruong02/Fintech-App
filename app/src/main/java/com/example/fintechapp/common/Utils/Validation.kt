@@ -1,4 +1,4 @@
-package com.example.fintechapp.core.helper
+package com.example.fintechapp.common.Utils
 
 import com.example.fintechapp.common.AppLanguage
 

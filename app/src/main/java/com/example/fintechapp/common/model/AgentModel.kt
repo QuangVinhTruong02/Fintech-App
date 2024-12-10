@@ -1,4 +1,4 @@
-package com.example.fintechapp.core.model
+package com.example.fintechapp.common.model
 
 import com.example.fintechapp.data.response.AgencyResponse
 

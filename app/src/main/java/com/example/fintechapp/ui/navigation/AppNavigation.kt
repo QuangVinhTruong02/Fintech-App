@@ -2,13 +2,17 @@ package com.example.fintechapp.ui.navigation
 
 
 import android.content.Context
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.fintechapp.common.AppConst
 import com.example.fintechapp.common.extensions.findActivity
+import com.example.fintechapp.data.request.AgencyRequest
+import com.example.fintechapp.data.response.AgencyResponse
 import kotlinx.coroutines.CoroutineScope
 
 
@@ -45,6 +49,17 @@ class AppNavigation(
         }
     }
 
+    fun navigateToCreateAgent(agency: String) {
+        navController.navigate(Screens.CreateAgent.createRoute(agency))
+    }
+
+    fun previousBackStackAgency(hasNewData: Boolean) {
+        navController.previousBackStackEntry?.savedStateHandle?.set(
+            AppConst.AGENCY_RETURN_KEY,
+            hasNewData
+        )
+        navController.popBackStack()
+    }
 
     fun navigateBack() {
         if (!navController.popBackStack()) {

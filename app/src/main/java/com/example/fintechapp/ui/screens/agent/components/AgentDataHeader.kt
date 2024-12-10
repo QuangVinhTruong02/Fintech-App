@@ -14,7 +14,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.fintechapp.common.AppIcon
 import com.example.fintechapp.common.AppTextStyle
-import com.example.fintechapp.core.type.AgentHeaderType
+import com.example.fintechapp.common.type.AgentHeaderType
 import com.example.fintechapp.ui.base.UICheckState
 import com.example.fintechapp.ui.components.CustomCheckboxWithState
 import com.example.fintechapp.ui.screens.agent.AgentViewModel
@@ -26,17 +26,17 @@ fun agentDataHeader(viewModel: AgentViewModel): List<DataColumn> {
     val selectedAgents: Map<Int, Boolean> by viewModel.selectedAgents.collectAsStateWithLifecycle()
     val uiCheckState: UICheckState by viewModel.uiAllCheckState.collectAsStateWithLifecycle()
     return buildList {
-        add(
-            DataColumn(
-                header = {
-                    CustomCheckboxWithState(
-                        uiCheckedState = uiCheckState,
-                        onCheckedState = viewModel::onToggleAllAgentsSelection
-                    )
-                },
-                width = TableColumnWidth.Fraction(0.1f),
-            )
-        )
+//        add(
+//            DataColumn(
+//                header = {
+//                    CustomCheckboxWithState(
+//                        uiCheckedState = uiCheckState,
+//                        onCheckedState = viewModel::onToggleAllAgentsSelection
+//                    )
+//                },
+//                width = TableColumnWidth.Fraction(0.1f),
+//            )
+//        )
         AgentHeaderType.entries.forEach { headerTitle ->
             add(
                 DataColumn(

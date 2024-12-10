@@ -1,5 +1,6 @@
 package com.example.fintechapp.ui.screens.agent
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fintechapp.data.remote.ResultApi
@@ -18,7 +19,8 @@ import kotlinx.coroutines.launch
 
 @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
 class AgentViewModel(
-    private val agencyRepository: AgencyRepository = AppModule.agencyRepository
+    private val agencyRepository: AgencyRepository = AppModule.agencyRepository,
+//    private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     private var page = 1
     private var pageSize = 10
@@ -52,11 +54,16 @@ class AgentViewModel(
     private val _showDialog = MutableStateFlow<Boolean>(false)
     val showDialog: StateFlow<Boolean> = _showDialog
 
-    private var selectedAgency: AgencyResponse? = null
+    private val _hasNewData = MutableStateFlow<Boolean?>(null)
+    val hasNewData : StateFlow<Boolean?> = _hasNewData
+
+    private var _selectedAgency = MutableStateFlow<AgencyResponse?>(null)
+    val selectedAgency : StateFlow<AgencyResponse?> = _selectedAgency
 
     init {
         fetchAgencies(_searchTextInput.value)
         handleSearchInput()
+        _hasNewData
     }
 
     private fun handleSearchInput() {
@@ -70,7 +77,7 @@ class AgentViewModel(
         }
     }
 
-    private fun fetchAgencies(query: String) {
+    fun fetchAgencies(query: String) {
         viewModelScope.launch {
             _isLoading.emit(true)
             try {
@@ -105,7 +112,7 @@ class AgentViewModel(
 
     fun onDeleteAgencyById() {
         viewModelScope.launch {
-            val response = agencyRepository.deleteAgencyById(selectedAgency!!.id)
+            val response = agencyRepository.deleteAgencyById(selectedAgency.value!!.id)
             if (response is ResultApi.Success) {
                 fetchAgencies("")
             }
@@ -113,7 +120,7 @@ class AgentViewModel(
     }
 
     fun setSelectedAgency(agencyResponse: AgencyResponse) {
-        selectedAgency = agencyResponse
+        _selectedAgency.value = agencyResponse
     }
 
     fun onPageIncrement() {

@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import com.example.fintechapp.common.AppColor
 import com.example.fintechapp.common.AppIcon
+import com.example.fintechapp.common.AppTextStyle
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -39,7 +40,7 @@ fun AppTopBar(
                     )
                 }
             } else {
-                Text(titleText)
+                Text(titleText, style = AppTextStyle.latoBoldFontStyle.copy(fontSize = 18.sp))
             }
         },
         colors = TopAppBarDefaults.largeTopAppBarColors(containerColor = backgroundColor),

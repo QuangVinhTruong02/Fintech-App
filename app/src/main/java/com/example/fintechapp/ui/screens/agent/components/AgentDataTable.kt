@@ -1,6 +1,7 @@
 package com.example.fintechapp.ui.screens.agent.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -24,7 +25,10 @@ import com.example.fintechapp.ui.components.CustomEndRowDropDown
 import com.example.fintechapp.ui.screens.agent.AgentViewModel
 
 @Composable
-fun AgentDataTable(viewModel: AgentViewModel) {
+fun AgentDataTable(
+    viewModel: AgentViewModel,
+    onNavigateToCreateAgent: (String) -> Unit
+) {
     val agencyList: List<AgencyResponse> by viewModel.agencyList.collectAsStateWithLifecycle()
     val selectedAgents: Map<Int, Boolean> by viewModel.selectedAgents.collectAsStateWithLifecycle()
     val isLoading: Boolean by viewModel.isLoading.collectAsStateWithLifecycle()
@@ -35,16 +39,11 @@ fun AgentDataTable(viewModel: AgentViewModel) {
             if (!isLoading) {
                 agencyList.forEach { item ->
                     row {
+//                        S
                         cell {
-                            CustomCheckBox(
-                                checked = selectedAgents[item.id] ?: false,
-                                onCheckedChange = { isChecked ->
-                                    viewModel.onToggleAgentSelection(item.id, isChecked)
-                                }
-                            )
-                        }
-                        cell {
-                            Row(verticalAlignment = Alignment.CenterVertically) {
+                            Row(verticalAlignment = Alignment.CenterVertically,
+                                modifier =Modifier.clickable {  }
+                                ) {
                                 Box(
                                     contentAlignment = Alignment.Center,
                                     modifier = Modifier
@@ -101,7 +100,10 @@ fun AgentDataTable(viewModel: AgentViewModel) {
                                 onClickRemove = {
                                     viewModel.setValueShowDialog(true)
                                     viewModel.setSelectedAgency(item)
-                                }
+                                },
+                                onClickUpdate = {
+                                    viewModel.setSelectedAgency(item)
+                                    onNavigateToCreateAgent(viewModel.selectedAgency.value!!.agentCode)}
                             )
                         }
 

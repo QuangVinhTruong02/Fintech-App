@@ -12,7 +12,7 @@ import com.example.fintechapp.common.AppColor
 import com.example.fintechapp.common.AppIcon
 import com.example.fintechapp.common.AppLanguage
 import com.example.fintechapp.common.AppTextStyle
-import com.example.fintechapp.core.helper.Validation
+import com.example.fintechapp.common.Utils.Validation
 import com.example.fintechapp.ui.components.CustomTextInput
 import com.example.fintechapp.ui.sign_in.SignInViewModel
 

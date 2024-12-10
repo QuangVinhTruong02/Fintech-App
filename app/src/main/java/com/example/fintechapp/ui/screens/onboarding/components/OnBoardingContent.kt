@@ -15,8 +15,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.fintechapp.common.AppTextStyle
-import com.example.fintechapp.core.model.OnboardingModel
-import com.example.fintechapp.core.model.onBoardingModelList
+import com.example.fintechapp.common.model.OnboardingModel
+import com.example.fintechapp.common.model.onBoardingModelList
 
 @Composable
 fun OnBoardingContent(onBoardingModel: OnboardingModel) {

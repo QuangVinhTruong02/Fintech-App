@@ -1,4 +1,4 @@
-package com.example.fintechapp.core.type
+package com.example.fintechapp.common.type
 
 import com.example.fintechapp.common.AppLanguage
 import com.example.fintechapp.data.response.AgencyResponse

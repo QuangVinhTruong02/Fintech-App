@@ -23,8 +23,8 @@ import com.example.fintechapp.common.AppColor
 import com.example.fintechapp.common.AppIcon
 import com.example.fintechapp.common.AppLanguage
 import com.example.fintechapp.common.AppTextStyle
-import com.example.fintechapp.core.model.navigationDrawerItemModelList
-import com.example.fintechapp.core.type.PageType
+import com.example.fintechapp.common.model.navigationDrawerItemModelList
+import com.example.fintechapp.common.type.PageType
 import com.example.fintechapp.ui.screens.home.HomeViewModel
 
 @Composable

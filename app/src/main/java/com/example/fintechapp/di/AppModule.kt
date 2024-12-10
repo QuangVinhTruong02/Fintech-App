@@ -6,8 +6,10 @@ import com.example.fintechapp.common.AppShared
 import com.example.fintechapp.data.remote.ApiInterceptor
 import com.example.fintechapp.data.remote.service.agency.AgencyApiService
 import com.example.fintechapp.data.remote.service.auth.AuthApiService
+import com.example.fintechapp.data.remote.service.location.LocationApiService
 import com.example.fintechapp.repository.AgencyRepository
 import com.example.fintechapp.repository.AuthRepository
+import com.example.fintechapp.repository.LocationRepository
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
@@ -49,6 +51,18 @@ object AppModule {
 
     val agencyRepository: AgencyRepository by lazy {
         AgencyRepository(agencyApiService)
+    }
+
+    private val locationApiService: LocationApiService by lazy{
+        Retrofit.Builder().baseUrl(AppConst.BASE_LOCATION_URL)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .client(okHttpClient)
+            .build()
+            .create(LocationApiService::class.java)
+    }
+
+    val locationRepository: LocationRepository by lazy{
+        LocationRepository(locationApiService)
     }
 
     fun initContext(context: Context) {

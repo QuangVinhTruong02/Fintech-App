@@ -1,5 +1,6 @@
 package com.example.fintechapp.ui.screens.home
 
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,7 +14,10 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -21,7 +25,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.fintechapp.common.AppColor
 import com.example.fintechapp.common.AppIcon
 import com.example.fintechapp.common.AppImage
-import com.example.fintechapp.core.type.PageType
+import com.example.fintechapp.common.type.PageType
 import com.example.fintechapp.ui.components.AppTopBar
 import com.example.fintechapp.ui.screens.agent.AgentScreen
 import com.example.fintechapp.ui.screens.home.components.DropDownAvatar
@@ -34,8 +38,11 @@ import kotlinx.coroutines.launch
 fun HomeScreen(
 //    appState: DtgAppState,
     viewModel: HomeViewModel = viewModel(),
-    onNavigateToSignIn: () -> Unit
+    onNavigateToSignIn: () -> Unit,
+    onNavigateToCreateAgent: (String) -> Unit,
+    retrieveNewAgencyBoolean: Boolean?
 ) {
+
     val drawerState = rememberDrawerState(
         initialValue = DrawerValue.Closed
     )
@@ -87,7 +94,12 @@ fun HomeScreen(
                 )
             }
         ) { paddingValues ->
-            HomeView(paddingValues = paddingValues, viewModel = viewModel)
+            HomeView(
+                paddingValues = paddingValues,
+                viewModel = viewModel,
+                onNavigateToCreateAgent = onNavigateToCreateAgent,
+                retrieveNewAgencyBoolean = retrieveNewAgencyBoolean ?: false
+            )
         }
     }
 }

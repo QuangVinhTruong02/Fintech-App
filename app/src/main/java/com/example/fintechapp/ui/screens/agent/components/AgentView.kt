@@ -10,11 +10,14 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -28,7 +31,10 @@ import com.example.fintechapp.ui.components.CustomTextInput
 import com.example.fintechapp.ui.screens.agent.AgentViewModel
 
 @Composable
-fun AgentView(viewModel: AgentViewModel){
+fun AgentView(
+    viewModel: AgentViewModel,
+    onNavigateToCreateAgent: (String) -> Unit
+) {
     val searchTextInput: String by viewModel.searchTextInput.collectAsStateWithLifecycle()
     val isLoading: Boolean by viewModel.isLoading.collectAsStateWithLifecycle()
     Column(
@@ -47,8 +53,17 @@ fun AgentView(viewModel: AgentViewModel){
             onValueChanged = {
                 viewModel.onQueryChanged(it)
             },
-            trailingIcon = AppIcon.icClose,
-            onPressedTrailingIcon = viewModel::onRemoveInput,
+            trailingIcon = {
+                IconButton(
+                    onClick = viewModel::onRemoveInput
+                ) {
+                    Icon(
+                        painter = painterResource(id = AppIcon.icClose),
+                        contentDescription = null,
+                        modifier = Modifier.size(25.dp)
+                    )
+                }
+            },
             modifier = Modifier.padding(horizontal = 10.dp)
         )
         Spacer(modifier = Modifier.height(5.dp))
@@ -56,14 +71,16 @@ fun AgentView(viewModel: AgentViewModel){
             buttonColor = AppColor.darkBlue,
             contentText = AppLanguage.NEW_AGENT,
             buttonState = UIButtonState.Enable,
-            onClick = {},
+            onClick = { onNavigateToCreateAgent("") },
             modifier = Modifier.padding(horizontal = 10.dp)
         )
         Spacer(modifier = Modifier.height(10.dp))
-        AgentDataTable(viewModel)
-        if(isLoading){
+        AgentDataTable(viewModel = viewModel, onNavigateToCreateAgent = onNavigateToCreateAgent)
+        if (isLoading) {
             Box(
-                modifier = Modifier.fillMaxWidth().padding(top = 10.dp, bottom = 10.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 10.dp, bottom = 10.dp),
                 contentAlignment = Alignment.Center
             ) {
                 CircularProgressIndicator(

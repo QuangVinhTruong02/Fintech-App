@@ -1,8 +1,8 @@
-package com.example.fintechapp.core.model
+package com.example.fintechapp.common.model
 
 import com.example.fintechapp.common.AppIcon
 import com.example.fintechapp.common.AppLanguage
-import com.example.fintechapp.core.type.PageType
+import com.example.fintechapp.common.type.PageType
 
 data class NavigationDrawerItemModel(
     val icon: Int, val titleText: String, val pageType: PageType

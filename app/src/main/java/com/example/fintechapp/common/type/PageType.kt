@@ -1,4 +1,4 @@
-package com.example.fintechapp.core.type
+package com.example.fintechapp.common.type
 
 enum class PageType{
     Agent,

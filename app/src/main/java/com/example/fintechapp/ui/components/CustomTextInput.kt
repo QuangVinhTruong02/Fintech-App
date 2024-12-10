@@ -1,9 +1,12 @@
 package com.example.fintechapp.ui.components
 
 
+import android.util.Log
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.PressInteraction
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.size
@@ -20,8 +23,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -34,14 +39,14 @@ import com.example.fintechapp.common.AppTextStyle
 @Composable
 fun CustomTextInput(
     valueText: String,
-    leadingIcon: Int,
-    trailingIcon: Int? = null,
+    leadingIcon: Int? = null,
+//    trailingIcon: Int? = null,
+    trailingIcon: @Composable (() -> Unit)? = null,
     hintText: String,
     keyBoardType: KeyboardType = KeyboardType.Text,
     onValidate: ((String) -> String?)? = null,
     onValueChanged: (String) -> Unit,
     onTapTextField: (() -> Unit)? = null,
-    onPressedTrailingIcon: (() -> Unit)? = null,
     maxChar: Int? = null,
     isPasswordVisible: Boolean = false,
     readOnly: Boolean = false,
@@ -95,26 +100,16 @@ fun CustomTextInput(
         },
         keyboardOptions = KeyboardOptions(keyboardType = keyBoardType),
         singleLine = true,
-        leadingIcon = {
-            Icon(
-                painter = painterResource(id = leadingIcon),
-                contentDescription = null,
-                modifier = Modifier.size(25.dp)
-            )
-        },
-        trailingIcon = trailingIcon?.let {
+        leadingIcon = leadingIcon?.let {
             {
-                IconButton(
-                    onClick = { onPressedTrailingIcon?.invoke() }
-                ) {
-                    Icon(
-                        painter = painterResource(id = trailingIcon),
-                        contentDescription = null,
-                        modifier = Modifier.size(25.dp)
-                    )
-                }
+                Icon(
+                    painter = painterResource(id = leadingIcon),
+                    contentDescription = null,
+                    modifier = Modifier.size(25.dp)
+                )
             }
         },
+        trailingIcon = trailingIcon,
         placeholder = {
             Text(
                 hintText,

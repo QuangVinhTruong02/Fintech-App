@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fintechapp.common.AppShared
-import com.example.fintechapp.core.helper.Validation
+import com.example.fintechapp.common.Utils.Validation
 import com.example.fintechapp.data.remote.ResultApi
 import com.example.fintechapp.data.request.LoginRequest
 import com.example.fintechapp.data.response.LoginResponse
