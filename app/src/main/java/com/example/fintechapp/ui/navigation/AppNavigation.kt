@@ -53,6 +53,10 @@ class AppNavigation(
         navController.navigate(Screens.CreateAgent.createRoute(agency))
     }
 
+    fun navigateToDetailAgent(agencyCode: String){
+        navController.navigate(Screens.DetailAgent.createRoute(agencyCode))
+    }
+
     fun previousBackStackAgency(hasNewData: Boolean) {
         navController.previousBackStackEntry?.savedStateHandle?.set(
             AppConst.AGENCY_RETURN_KEY,

@@ -1,10 +1,7 @@
-package com.example.fintechapp.ui.screens.create_agent.components
+package com.example.fintechapp.ui.screens.agent.components.bottom_sheet
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
@@ -16,13 +13,13 @@ import com.example.fintechapp.common.AppColor
 import com.example.fintechapp.common.AppLanguage
 import com.example.fintechapp.ui.base.UIButtonState
 import com.example.fintechapp.ui.components.CustomButton
-import com.example.fintechapp.ui.screens.create_agent.CreateAgentViewModel
+import com.example.fintechapp.ui.screens.agent.AgentViewModel
 
 @Composable
-fun CreateAgentButton(
-//    onNavigateBack: (Boolean) -> Unit,
-    onPreviousBackStackAgency: (Boolean) -> Unit,
-    viewModel: CreateAgentViewModel
+fun AgentSheetButton(
+    viewModel: AgentViewModel,
+    onDismissRequest: (Boolean) -> Unit,
+    onHasData: (Boolean) -> Unit
 ) {
     val uiConfirmButtonState: UIButtonState by viewModel.uiButtonConfirmState.collectAsStateWithLifecycle()
     Row(
@@ -31,7 +28,12 @@ fun CreateAgentButton(
         CustomButton(
             modifier = Modifier.weight(1f),
             contentText = AppLanguage.CONFIRM,
-            onClick = {viewModel.onConfirmCreateAgency(onPreviousBackStackAgency)},
+            onClick = {
+                viewModel.onConfirmCreateAgency(
+                    onHasData = onHasData,
+                    onDismissRequest = onDismissRequest
+                )
+            },
             buttonState = uiConfirmButtonState,
             buttonColor = AppColor.darkBlue,
         )
@@ -39,7 +41,11 @@ fun CreateAgentButton(
         CustomButton(
             modifier = Modifier.weight(1f),
             contentText = AppLanguage.CANCEL,
-            onClick = {onPreviousBackStackAgency(false)},
+            onClick = {
+                viewModel.onClearInput()
+                onHasData(false)
+                onDismissRequest(false)
+            },
             buttonState = UIButtonState.Enable,
             buttonColor = AppColor.grey,
         )

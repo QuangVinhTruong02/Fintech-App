@@ -52,8 +52,8 @@ fun CustomTextFieldDropDown(
     onTapTextField: () -> Unit,
     setIsExpanded: (Boolean) -> Unit,
     optionList: List<String>,
-
-    isLoading: Boolean = false
+    isLoading: Boolean = false,
+    enable: Boolean = true
 ) {
     var textFieldSize by remember {
         mutableStateOf(Size.Zero)
@@ -73,6 +73,7 @@ fun CustomTextFieldDropDown(
         CustomTextInput(
             valueText = valueText,
             hintText = hintText,
+            enable = enable,
             onValueChanged = {
                 onValueChanged(it)
             },
@@ -86,7 +87,7 @@ fun CustomTextFieldDropDown(
             },
             trailingIcon = {
                 Row {
-                    if (isLoading == true) {
+                    if (isLoading) {
                         CircularProgressIndicator()
                     }
                     IconButton(

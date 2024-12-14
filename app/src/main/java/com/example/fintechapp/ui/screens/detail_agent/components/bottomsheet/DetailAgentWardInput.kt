@@ -1,4 +1,4 @@
-package com.example.fintechapp.ui.screens.create_agent.components
+package com.example.fintechapp.ui.screens.detail_agent.components.bottomsheet
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -12,15 +12,15 @@ import com.example.fintechapp.common.AppLanguage
 import com.example.fintechapp.common.AppTextStyle
 import com.example.fintechapp.common.Utils.Validation
 import com.example.fintechapp.data.response.WardResponse
+import com.example.fintechapp.ui.base.UIState
 import com.example.fintechapp.ui.components.CustomTextFieldDropDown
-import com.example.fintechapp.ui.screens.create_agent.CreateAgentViewModel
+import com.example.fintechapp.ui.screens.detail_agent.DetailAgentViewModel
 
 @Composable
-fun CreateAgentWardInput(viewModel: CreateAgentViewModel) {
+fun DetailAgentWardInput(viewModel: DetailAgentViewModel) {
 
     val isExpandedWard: Boolean by viewModel.isExpandedWard.collectAsStateWithLifecycle()
-    val wardList: List<WardResponse> by viewModel.wardList.collectAsStateWithLifecycle()
-    val isWardLoading: Boolean by viewModel.isWardLoading.collectAsStateWithLifecycle()
+    val uiWardsState: UIState<List<WardResponse>> by viewModel.uiWardListState.collectAsStateWithLifecycle()
 
     Text("${AppLanguage.WARD}/${AppLanguage.COMMUNE}*", style = AppTextStyle.latoMediumFontStyle)
     Spacer(modifier = Modifier.height(5.dp))
@@ -32,11 +32,13 @@ fun CreateAgentWardInput(viewModel: CreateAgentViewModel) {
             viewModel.wardInput = it
             viewModel.setValueConfirmButtonState()
         },
-        onTapTextField = {},
-        setIsExpanded = { viewModel.setIsExpandedWard(it) },
-        onSelectedValue = { viewModel.setSelectedWard(it) },
-        optionList = wardList.map { it.name },
-        isLoading = isWardLoading,
+        onTapTextField = {viewModel.fetchWards()},
+        setIsExpanded = { viewModel.onSetValueIsExpandedWard(it) },
+        onSelectedValue = {
+            viewModel.setSelectedWard(it)
+        },
+        optionList = if (uiWardsState is UIState.Success) (uiWardsState as UIState.Success).data!!.map { it.name } else emptyList(),
+        isLoading = uiWardsState is UIState.Loading,
         onValidation = { Validation().validateEmpty(viewModel.wardInput) }
     )
 }

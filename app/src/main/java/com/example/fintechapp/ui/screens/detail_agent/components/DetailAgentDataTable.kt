@@ -1,4 +1,4 @@
-package com.example.fintechapp.ui.screens.agent.components
+package com.example.fintechapp.ui.screens.detail_agent.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -18,34 +18,33 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.fintechapp.common.AppColor
 import com.example.fintechapp.common.AppTextStyle
+import com.example.fintechapp.common.Utils.DateTimeUtils
 import com.example.fintechapp.common.extensions.generateInitials
-import com.example.fintechapp.data.response.AgenciesResponse
-import com.example.fintechapp.data.response.AgencyResponse
+import com.example.fintechapp.data.response.ClientResponse
+import com.example.fintechapp.data.response.ClientsResponse
 import com.example.fintechapp.ui.base.UIState
 import com.example.fintechapp.ui.components.CustomDataTable
 import com.example.fintechapp.ui.components.CustomEndRowDropDown
-import com.example.fintechapp.ui.screens.agent.AgentViewModel
+import com.example.fintechapp.ui.screens.detail_agent.DetailAgentViewModel
 
+//
 @Composable
-fun AgentDataTable(
-    viewModel: AgentViewModel,
-    onNavigateDetailAgent: (String) -> Unit,
-    onNavigateToCreateAgent: (String) -> Unit
-) {
-    val uiAgencyListState: UIState<List<AgencyResponse>> by viewModel.uiAgencyListState.collectAsStateWithLifecycle()
+fun DetailAgentDataTable(viewModel: DetailAgentViewModel) {
+//    val clientList: List<ClientResponse> by viewModel.clientList.collectAsStateWithLifecycle()
+//    val isLoading: Boolean by viewModel.isLoading.collectAsStateWithLifecycle()
+
+    val uiClientsState: UIState<ClientsResponse> by viewModel.uiClientListState.collectAsStateWithLifecycle()
 
     CustomDataTable(
-        headerList = agentDataHeader(),
+        headerList = detailAgentDataClientHeader(),
         content = {
-            if (uiAgencyListState is UIState.Success) {
-                (uiAgencyListState as UIState.Success<List<AgencyResponse>>).data!!.forEach { item ->
+            if (uiClientsState is UIState.Success && ((uiClientsState as UIState.Success<ClientsResponse>).data!!.clientList.isNotEmpty())) {
+                val clientList = (uiClientsState as UIState.Success).data!!.clientList
+                clientList.forEach { item ->
                     row {
                         cell {
                             Row(verticalAlignment = Alignment.CenterVertically,
-                                modifier = Modifier.clickable {
-                                    viewModel.setSelectedAgency(item)
-                                    onNavigateDetailAgent(viewModel.selectedAgency.value!!.agentCode)
-                                }
+                                modifier = Modifier.clickable { }
                             ) {
                                 Box(
                                     contentAlignment = Alignment.Center,
@@ -57,13 +56,14 @@ fun AgentDataTable(
                                         )
                                 ) {
                                     Text(
-                                        text = item.agentName.generateInitials(),
+                                        text = item.fullName.generateInitials()
+                                            .toString(),
                                         style = AppTextStyle.latoBoldFontStyle.copy(color = AppColor.darkBlue)
                                     )
                                 }
                                 Spacer(modifier = Modifier.width(10.dp))
                                 Text(
-                                    text = item.agentName,
+                                    text = item.fullName,
                                     style = AppTextStyle.latoMediumFontStyle,
                                     overflow = TextOverflow.Ellipsis
                                 )
@@ -71,14 +71,7 @@ fun AgentDataTable(
                         }
                         cell {
                             Text(
-                                item.agentCode,
-                                style = AppTextStyle.latoMediumFontStyle,
-                                overflow = TextOverflow.Ellipsis
-                            )
-                        }
-                        cell {
-                            Text(
-                                item.phoneNumber,
+                                item.phone,
                                 style = AppTextStyle.latoMediumFontStyle,
                                 overflow = TextOverflow.Ellipsis
                             )
@@ -92,25 +85,16 @@ fun AgentDataTable(
                         }
                         cell {
                             Text(
-                                item.farmersCount.toString(),
+                                DateTimeUtils.getFormattedDate(dateTime = item.createdAt),
                                 style = AppTextStyle.latoMediumFontStyle,
                                 overflow = TextOverflow.Ellipsis
                             )
                         }
                         cell {
                             CustomEndRowDropDown(
-                                onClickDetail = {
-                                    viewModel.setSelectedAgency(item)
-                                    onNavigateDetailAgent(viewModel.selectedAgency.value!!.agentCode)
-                                },
-                                onClickRemove = {
-                                    viewModel.setValueShowDialog(true)
-                                    viewModel.setSelectedAgency(item)
-                                },
-                                onClickUpdate = {
-                                    viewModel.setSelectedAgency(item)
-                                    viewModel.onSetValueOpenSheet(true)
-                                }
+                                onClickRemove = {},
+                                onClickUpdate = {},
+                                onClickDetail = {}
                             )
                         }
 
@@ -120,4 +104,3 @@ fun AgentDataTable(
         },
     )
 }
-

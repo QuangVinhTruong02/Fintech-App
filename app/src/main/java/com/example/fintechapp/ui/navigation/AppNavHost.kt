@@ -12,7 +12,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.fintechapp.common.AppConst
 import com.example.fintechapp.ui.base.DtgAppState
-import com.example.fintechapp.ui.screens.create_agent.CreateAgentScreen
+import com.example.fintechapp.ui.screens.detail_agent.DetailAgentScreen
 import com.example.fintechapp.ui.screens.home.HomeScreen
 import com.example.fintechapp.ui.screens.onboarding.OnboardingScreen
 import com.example.fintechapp.ui.screens.splash.SplashScreen
@@ -60,26 +60,41 @@ fun AppNavHost(
             )
         }
 
-        composable(Screens.Home.route) { entry ->
-            val savedStateHandle = entry.savedStateHandle
+        composable(Screens.Home.route) {
             HomeScreen(
-//                appState = appState,
+                appState = appState,
                 onNavigateToSignIn = appNavigation::navigateToSignIn,
                 onNavigateToCreateAgent = appNavigation::navigateToCreateAgent,
-                retrieveNewAgencyBoolean = savedStateHandle.get<Boolean>(AppConst.AGENCY_RETURN_KEY)
+                onNavigateDetailAgent = appNavigation::navigateToDetailAgent,
             )
         }
 
+//        composable(
+//            Screens.CreateAgent.route,
+//            arguments = listOf(navArgument("agencyId") { type = NavType.StringType })
+//        ) { entry ->
+//            val agencyId = entry.arguments?.getString("agencyId")
+//            if(agencyId != null){
+//                CreateAgentScreen(
+//                    onNavigateToBack = appNavigation::navigateBack,
+//                    onPreviousBackStackAgency = appNavigation::previousBackStackAgency,
+//                    agencyId = agencyId
+//                )
+//            }else{
+//                Log.d("NavigationError", "agencyId is null or invalid")
+//            }
+//        }
+
         composable(
-            Screens.CreateAgent.route,
-            arguments = listOf(navArgument("agencyId") { type = NavType.StringType })
+            Screens.DetailAgent.route,
+            arguments = listOf(navArgument("agencyCode") { type = NavType.StringType })
         ) { entry ->
-            val agencyId = entry.arguments?.getString("agencyId")
-            if(agencyId != null){
-                CreateAgentScreen(
-                    onNavigateToBack = appNavigation::navigateBack,
-                    onPreviousBackStackAgency = appNavigation::previousBackStackAgency,
-                    agencyId = agencyId
+            val agencyCode = entry.arguments?.getString("agencyCode")
+            if(agencyCode != null){
+                DetailAgentScreen(
+                    appState = appState,
+                    onNavigateBack = appNavigation::navigateBack,
+                    agencyCode = agencyCode
                 )
             }else{
                 Log.d("NavigationError", "agencyId is null or invalid")

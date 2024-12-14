@@ -1,4 +1,4 @@
-package com.example.fintechapp.ui.screens.create_agent.components
+package com.example.fintechapp.ui.screens.agent.components.bottom_sheet
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -11,15 +11,17 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.fintechapp.common.AppLanguage
 import com.example.fintechapp.common.AppTextStyle
 import com.example.fintechapp.common.Utils.Validation
+import com.example.fintechapp.data.response.AgencyResponse
 import com.example.fintechapp.data.response.ProvinceResponse
+import com.example.fintechapp.ui.base.UIState
 import com.example.fintechapp.ui.components.CustomTextFieldDropDown
-import com.example.fintechapp.ui.screens.create_agent.CreateAgentViewModel
+import com.example.fintechapp.ui.screens.agent.AgentViewModel
 
 @Composable
-fun CreateAgentCityInput(viewModel: CreateAgentViewModel) {
+fun AgentSheetCityInput(viewModel: AgentViewModel) {
     val isExpandedProvince: Boolean by viewModel.isExpandedProvince.collectAsStateWithLifecycle()
-    val provinceList: List<ProvinceResponse> by viewModel.provinceList.collectAsStateWithLifecycle()
-    val isProvinceLoading: Boolean by viewModel.isProvinceLoading.collectAsStateWithLifecycle()
+    val uiProvinceListState: UIState<List<ProvinceResponse>> by viewModel.uiProvinceListState.collectAsStateWithLifecycle()
+    val selectedAgency: AgencyResponse? by viewModel.selectedAgency.collectAsStateWithLifecycle()
 
     Text("${AppLanguage.PROVINCE}/${AppLanguage.CITY}*", style = AppTextStyle.latoMediumFontStyle)
     Spacer(modifier = Modifier.height(5.dp))
@@ -31,11 +33,24 @@ fun CreateAgentCityInput(viewModel: CreateAgentViewModel) {
             viewModel.provinceInput = it
             viewModel.setValueConfirmButtonState()
         },
-        onTapTextField = viewModel::fetchProvinces,
-        setIsExpanded = { viewModel.setIsExpandedProvince(it) },
-        onSelectedValue = { viewModel.setSelectedProvince(it) },
-        optionList = provinceList.map { it.name },
-        isLoading = isProvinceLoading,
+        enable = selectedAgency == null,
+        onTapTextField = {
+            if (selectedAgency == null) {
+                viewModel.fetchProvinces()
+            }
+        },
+        setIsExpanded = {
+            if (selectedAgency == null) {
+                viewModel.setIsExpandedProvince(it)
+            }
+        },
+        onSelectedValue = {
+            if (selectedAgency == null) {
+                viewModel.setSelectedProvince(it)
+            }
+        },
+        optionList = if (uiProvinceListState is UIState.Success) (uiProvinceListState as UIState.Success).data!!.map { it.name } else emptyList(),
+        isLoading = uiProvinceListState is UIState.Loading,
         onValidation = { Validation().validateEmpty(it) }
     )
 }

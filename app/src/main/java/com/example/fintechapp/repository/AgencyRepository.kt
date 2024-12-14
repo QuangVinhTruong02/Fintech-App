@@ -8,6 +8,7 @@ import com.example.fintechapp.data.request.AgencyRequest
 import com.example.fintechapp.data.response.AgenciesResponse
 import com.example.fintechapp.data.response.AgencyResponse
 import com.example.fintechapp.data.response.BaseResponse
+import com.example.fintechapp.data.response.ClientsResponse
 
 class AgencyRepository(
     private val agencyApiService: AgencyApiService,
@@ -16,10 +17,10 @@ class AgencyRepository(
         page: Int,
         pageSize: Int,
         search: String
-    ): ResultApi<BaseResponse<AgenciesResponse>> {
+    ): ResultApi<AgenciesResponse> {
         val response = agencyApiService.fetchAgencies(page, pageSize, search)
         return if (response.isSuccessful && response.body() != null) {
-            ResultApi.Success(response.body()!!)
+            ResultApi.Success(response.body()!!.data)
         } else {
             ResultApi.Error(Exception(AppLanguage.SOMETHING_WENT_WRONG))
         }
@@ -37,10 +38,10 @@ class AgencyRepository(
     }
 
     suspend fun updateAgency(
-        agencyId: String,
+        agencyCode: String,
         agencyRequest: AgencyRequest
     ): ResultApi<BaseResponse<Boolean>> {
-        val response = agencyApiService.updateAgency(agencyId, agencyRequest)
+        val response = agencyApiService.updateAgency(agencyCode, agencyRequest)
         return if (response.isSuccessful && response.body() != null) {
             ResultApi.Success(response.body()!!)
         } else {
@@ -61,6 +62,20 @@ class AgencyRepository(
         val response = agencyApiService.createAgency(agencyRequest)
         return if (response.isSuccessful) {
             ResultApi.Success(true)
+        } else {
+            ResultApi.Error(Exception(AppLanguage.SOMETHING_WENT_WRONG))
+        }
+    }
+
+    suspend fun fetchClientsOfAgency(
+        agencyCode: String,
+        page: Int,
+        pageSize: Int,
+        search: String
+    ): ResultApi<ClientsResponse> {
+        val response = agencyApiService.fetchClientsOfAgency(agencyCode, page, pageSize, search)
+        return if (response.isSuccessful && response.body() != null) {
+            ResultApi.Success(response.body()!!.data)
         } else {
             ResultApi.Error(Exception(AppLanguage.SOMETHING_WENT_WRONG))
         }

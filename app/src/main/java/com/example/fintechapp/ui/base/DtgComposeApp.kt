@@ -74,7 +74,7 @@ fun DtgComposeApp(
             )
             Box(
                 modifier = Modifier
-//                    .imePadding().consumeWindowInsets(padding)
+                    .imePadding()
                     .weight(1f)
 //                    .background(color = BamsTheme.colors.backgroundColor)
             ) {

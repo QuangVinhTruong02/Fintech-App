@@ -9,28 +9,28 @@ import com.example.fintechapp.data.response.ProvinceResponse
 import com.example.fintechapp.data.response.WardResponse
 
 class LocationRepository(private val locationApiService: LocationApiService) {
-    suspend fun fetchProvinces(): ResultApi<BaseResponse<List<ProvinceResponse>>>{
+    suspend fun fetchProvinces(): ResultApi<List<ProvinceResponse>>{
         val response = locationApiService.fetchProvinces()
         return if(response.isSuccessful){
-            ResultApi.Success(response.body())
+            ResultApi.Success(response.body()?.data)
         }else{
             ResultApi.Error(Exception(AppLanguage.SOMETHING_WENT_WRONG))
         }
     }
 
-    suspend fun fetchDistricts(provinceCode: String) : ResultApi<BaseResponse<List<DistrictResponse>>>{
+    suspend fun fetchDistricts(provinceCode: String) : ResultApi<List<DistrictResponse>>{
         val response = locationApiService.fetchDistricts(provinceCode)
         return if(response.isSuccessful){
-            ResultApi.Success(response.body())
+            ResultApi.Success(response.body()?.data)
         }else{
             ResultApi.Error(Exception(AppLanguage.SOMETHING_WENT_WRONG))
         }
     }
 
-    suspend fun fetchWard(districtCode: String) : ResultApi<BaseResponse<List<WardResponse>>>{
+    suspend fun fetchWard(districtCode: String) : ResultApi<List<WardResponse>>{
         val response = locationApiService.fetchWards(districtCode)
         return if(response.isSuccessful){
-            ResultApi.Success(response.body())
+            ResultApi.Success(response.body()?.data)
         }else{
             ResultApi.Error(Exception(AppLanguage.SOMETHING_WENT_WRONG))
         }

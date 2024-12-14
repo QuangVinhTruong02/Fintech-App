@@ -15,4 +15,9 @@ open class Screens(val route: String) {
     object CreateAgent : Screens("CreateAgent/{agencyId}"){
         fun createRoute(agencyId: String?): String = "CreateAgent/$agencyId"
     }
+
+    object DetailAgent : Screens("DetailAgent/{agencyCode}"){
+        fun createRoute(agencyCode: String): String = "DetailAgent/$agencyCode"
+    }
+
 }

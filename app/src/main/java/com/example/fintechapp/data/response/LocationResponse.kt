@@ -8,7 +8,7 @@ data class LocationResponse (
     @SerializedName("province")
     val province : ProvinceResponse,
     @SerializedName("district")
-    val district : DistrictResponse,
+    val district : DistrictResponse?,
     @SerializedName("ward")
-    val ward : WardResponse,
+    val ward : WardResponse?,
 )

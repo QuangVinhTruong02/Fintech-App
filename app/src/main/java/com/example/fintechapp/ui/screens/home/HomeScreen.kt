@@ -26,6 +26,7 @@ import com.example.fintechapp.common.AppColor
 import com.example.fintechapp.common.AppIcon
 import com.example.fintechapp.common.AppImage
 import com.example.fintechapp.common.type.PageType
+import com.example.fintechapp.ui.base.DtgAppState
 import com.example.fintechapp.ui.components.AppTopBar
 import com.example.fintechapp.ui.screens.agent.AgentScreen
 import com.example.fintechapp.ui.screens.home.components.DropDownAvatar
@@ -36,11 +37,11 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun HomeScreen(
-//    appState: DtgAppState,
+    appState: DtgAppState,
     viewModel: HomeViewModel = viewModel(),
     onNavigateToSignIn: () -> Unit,
     onNavigateToCreateAgent: (String) -> Unit,
-    retrieveNewAgencyBoolean: Boolean?
+    onNavigateDetailAgent:(String) -> Unit,
 ) {
 
     val drawerState = rememberDrawerState(
@@ -84,7 +85,6 @@ fun HomeScreen(
                     },
                     leadingIcon = AppIcon.icMenu,
                     backgroundColor = AppColor.white,
-                    titleIcon = AppIcon.icNightMode,
                     actions = {
                         DropDownAvatar(
                             viewModel = viewModel,
@@ -95,10 +95,11 @@ fun HomeScreen(
             }
         ) { paddingValues ->
             HomeView(
+                appState = appState,
                 paddingValues = paddingValues,
                 viewModel = viewModel,
                 onNavigateToCreateAgent = onNavigateToCreateAgent,
-                retrieveNewAgencyBoolean = retrieveNewAgencyBoolean ?: false
+                onNavigateDetailAgent = onNavigateDetailAgent,
             )
         }
     }

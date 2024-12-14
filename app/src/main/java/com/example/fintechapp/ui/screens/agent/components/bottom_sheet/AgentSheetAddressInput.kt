@@ -1,4 +1,4 @@
-package com.example.fintechapp.ui.screens.create_agent.components
+package com.example.fintechapp.ui.screens.agent.components.bottom_sheet
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -10,10 +10,10 @@ import com.example.fintechapp.common.AppLanguage
 import com.example.fintechapp.common.AppTextStyle
 import com.example.fintechapp.common.Utils.Validation
 import com.example.fintechapp.ui.components.CustomTextInput
-import com.example.fintechapp.ui.screens.create_agent.CreateAgentViewModel
+import com.example.fintechapp.ui.screens.agent.AgentViewModel
 
 @Composable
-fun CreateAgentAddressInput(viewModel: CreateAgentViewModel) {
+fun AgentSheetAddressInput(viewModel: AgentViewModel) {
     Text("${AppLanguage.ADDRESS}*", style = AppTextStyle.latoMediumFontStyle)
     Spacer(modifier = Modifier.height(5.dp))
     CustomTextInput(

@@ -26,7 +26,7 @@ import com.example.fintechapp.ui.screens.agent.AgentViewModel
 fun AgentTableFooter(viewModel: AgentViewModel) {
     val nextHasDataToFetch: Boolean by viewModel.nextHasDataToFetch.collectAsStateWithLifecycle()
     val preHasDataToFetch: Boolean by viewModel.preHasDataToFetch.collectAsStateWithLifecycle()
-
+    val totalCountItem : Int by viewModel.totalCount.collectAsStateWithLifecycle()
     Row(
         horizontalArrangement = Arrangement.End,
         verticalAlignment = Alignment.CenterVertically,
@@ -34,9 +34,7 @@ fun AgentTableFooter(viewModel: AgentViewModel) {
             .fillMaxWidth()
             .background(color = Color.Gray.copy(alpha = 0.2f))
     ) {
-        Text("10")
-        Icon(painter = painterResource(AppIcon.icDropDown), contentDescription = null)
-        Text("1-10 trong 20")
+        Text("$totalCountItem Item")
         Spacer(modifier = Modifier.width(15.dp))
         IconButton(
             onClick = viewModel::onPageDecrement,

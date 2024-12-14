@@ -1,4 +1,4 @@
-package com.example.fintechapp.ui.screens.create_agent.components
+package com.example.fintechapp.ui.screens.detail_agent.components.bottomsheet
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -11,10 +11,10 @@ import com.example.fintechapp.common.AppLanguage
 import com.example.fintechapp.common.AppTextStyle
 import com.example.fintechapp.common.Utils.Validation
 import com.example.fintechapp.ui.components.CustomTextInput
-import com.example.fintechapp.ui.screens.create_agent.CreateAgentViewModel
+import com.example.fintechapp.ui.screens.detail_agent.DetailAgentViewModel
 
 @Composable
-fun CreateAgentPhoneInput(viewModel: CreateAgentViewModel) {
+fun DetailAgentPhoneInput(viewModel: DetailAgentViewModel) {
     Text("${AppLanguage.PHONE_NUMBER}*", style = AppTextStyle.latoMediumFontStyle)
     Spacer(modifier = Modifier.height(5.dp))
     CustomTextInput(

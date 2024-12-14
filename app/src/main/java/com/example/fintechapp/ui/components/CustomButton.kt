@@ -2,6 +2,7 @@ package com.example.fintechapp.ui.components
 
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -31,7 +32,7 @@ fun CustomButton(
             containerColor = buttonColor,
             disabledContainerColor = disabledButtonColor
         ),
-        modifier = modifier.heightIn(min = 56.dp),
+        modifier = modifier.heightIn(min = 45.dp),
         enabled = buttonState == UIButtonState.Enable,
         shape = RoundedCornerShape(8.dp)
     ) {

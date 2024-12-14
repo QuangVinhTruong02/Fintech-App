@@ -4,6 +4,7 @@ import com.example.fintechapp.data.request.AgencyRequest
 import com.example.fintechapp.data.response.AgenciesResponse
 import com.example.fintechapp.data.response.AgencyResponse
 import com.example.fintechapp.data.response.BaseResponse
+import com.example.fintechapp.data.response.ClientsResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -19,18 +20,18 @@ interface AgencyApiService {
         @Query("page") page: Int,
         @Query("pageSize") pageSize: Int,
         @Query("search") search: String
-    ) : Response<BaseResponse<AgenciesResponse>>
+    ): Response<BaseResponse<AgenciesResponse>>
 
     @GET("agencies/{agencyCode}")
     suspend fun fetchAgency(
         @Path("agencyCode") agencyCode: String
-    ) : Response<BaseResponse<AgencyResponse>>
+    ): Response<BaseResponse<AgencyResponse>>
 
     @PUT("agencies/{agencyCode}")
     suspend fun updateAgency(
         @Path("agencyCode") agencyCode: String,
         @Body agencyRequest: AgencyRequest
-    ) : Response<BaseResponse<Boolean>>
+    ): Response<BaseResponse<Boolean>>
 
     @DELETE("agencies")
     suspend fun deleteAgencyById(
@@ -39,6 +40,14 @@ interface AgencyApiService {
 
     @POST("agencies")
     suspend fun createAgency(
-        @Body agencyRequest : AgencyRequest
+        @Body agencyRequest: AgencyRequest
     ): Response<Void>
+
+    @GET("agencies/{agencyCode}/users")
+    suspend fun fetchClientsOfAgency(
+        @Path("agencyCode") agencyCode: String,
+        @Query("page") page : Int,
+        @Query("pageSize") pageSize: Int,
+        @Query("search") search: String,
+    ): Response<BaseResponse<ClientsResponse>>
 }

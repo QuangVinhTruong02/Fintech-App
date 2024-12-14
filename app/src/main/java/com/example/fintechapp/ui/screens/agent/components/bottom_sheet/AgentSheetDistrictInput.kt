@@ -1,4 +1,4 @@
-package com.example.fintechapp.ui.screens.create_agent.components
+package com.example.fintechapp.ui.screens.agent.components.bottom_sheet
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -12,14 +12,14 @@ import com.example.fintechapp.common.AppLanguage
 import com.example.fintechapp.common.AppTextStyle
 import com.example.fintechapp.common.Utils.Validation
 import com.example.fintechapp.data.response.DistrictResponse
+import com.example.fintechapp.ui.base.UIState
 import com.example.fintechapp.ui.components.CustomTextFieldDropDown
-import com.example.fintechapp.ui.screens.create_agent.CreateAgentViewModel
+import com.example.fintechapp.ui.screens.agent.AgentViewModel
 
 @Composable
-fun CreateAgentDistrictInput(viewModel: CreateAgentViewModel) {
+fun AgentSheetDistrictInput(viewModel: AgentViewModel) {
     val isExpandedDistrict: Boolean by viewModel.isExpandedDistrict.collectAsStateWithLifecycle()
-    val districtList: List<DistrictResponse> by viewModel.districtList.collectAsStateWithLifecycle()
-    val isDistrictLoading: Boolean by viewModel.isDistrictLoading.collectAsStateWithLifecycle()
+    val uiDistrictListState : UIState<List<DistrictResponse>> by viewModel.uiDistrictListState.collectAsStateWithLifecycle()
 
     Text("${AppLanguage.DISTRICT}*", style = AppTextStyle.latoMediumFontStyle)
     Spacer(modifier = Modifier.height(5.dp))
@@ -33,8 +33,8 @@ fun CreateAgentDistrictInput(viewModel: CreateAgentViewModel) {
         },
         setIsExpanded = { viewModel.setIsExpandedDistrict(it) },
         onSelectedValue = { viewModel.setSelectedDistrict(it) },
-        optionList = districtList.map { it.name },
-        isLoading = isDistrictLoading,
+        optionList = if(uiDistrictListState is UIState.Success) (uiDistrictListState as UIState.Success).data!!.map { it.name } else emptyList(),
+        isLoading = uiDistrictListState is UIState.Loading,
         onTapTextField = {},
         onValidation = { Validation().validateEmpty(it) }
     )

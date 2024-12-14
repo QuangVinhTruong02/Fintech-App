@@ -1,4 +1,4 @@
-package com.example.fintechapp.ui.screens.agent.components
+package com.example.fintechapp.ui.screens.detail_agent.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,13 +13,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import com.example.fintechapp.common.AppIcon
 import com.example.fintechapp.common.AppTextStyle
 import com.example.fintechapp.common.type.AgentHeaderType
+import com.example.fintechapp.common.type.ClientOfAgentHeaderType
 import com.seanproctor.datatable.DataColumn
 import com.seanproctor.datatable.TableColumnWidth
 
 @Composable
-fun agentDataHeader(): List<DataColumn> {
+fun  detailAgentDataClientHeader(): List<DataColumn>{
     return buildList {
-        AgentHeaderType.entries.forEach { headerTitle ->
+        ClientOfAgentHeaderType.entries.forEach { headerTitle ->
             add(
                 DataColumn(
                     header = {
@@ -27,7 +28,6 @@ fun agentDataHeader(): List<DataColumn> {
                             Text(
                                 headerTitle.title.uppercase(),
                                 style = AppTextStyle.latoBoldFontStyle,
-                                modifier = Modifier.fillMaxWidth(0.6f),
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
                             )

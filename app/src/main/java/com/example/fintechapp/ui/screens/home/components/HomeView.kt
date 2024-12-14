@@ -11,6 +11,7 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.fintechapp.common.type.PageType
+import com.example.fintechapp.ui.base.DtgAppState
 import com.example.fintechapp.ui.screens.agent.AgentScreen
 import com.example.fintechapp.ui.screens.home.HomeViewModel
 import com.example.fintechapp.ui.screens.qr_code_product.QRCodeProductScreen
@@ -18,12 +19,12 @@ import com.example.fintechapp.ui.screens.qr_code_product.QRCodeProductScreen
 @Composable
 fun HomeView(
     paddingValues: PaddingValues,
+    appState: DtgAppState,
     onNavigateToCreateAgent: (String) -> Unit,
+    onNavigateDetailAgent: (String) -> Unit,
     viewModel: HomeViewModel,
-    retrieveNewAgencyBoolean: Boolean
 ) {
     val indexPageType: PageType by viewModel.indexPageType.collectAsStateWithLifecycle()
-    val retrieveHasAgency by rememberUpdatedState(newValue = retrieveNewAgencyBoolean)
 
     Box(
         modifier = Modifier
@@ -32,8 +33,9 @@ fun HomeView(
     ) {
         when (indexPageType) {
             PageType.Agent -> AgentScreen(
-                onNavigateToCreateAgent,
-                retrieveNewAgencyBoolean = retrieveNewAgencyBoolean
+                onNavigateToCreateAgent = onNavigateToCreateAgent,
+                onNavigateDetailAgent = onNavigateDetailAgent,
+                appState = appState
             )
 
             PageType.QRCodeProduct -> QRCodeProductScreen()

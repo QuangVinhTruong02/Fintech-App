@@ -25,8 +25,9 @@ import com.example.fintechapp.common.AppTextStyle
 
 @Composable
 fun CustomEndRowDropDown(
-     onClickRemove: () -> Unit,
-     onClickUpdate: () -> Unit,
+    onClickDetail: () -> Unit,
+    onClickRemove: () -> Unit,
+    onClickUpdate: () -> Unit,
 ) {
     var isExpanded by remember {
         mutableStateOf(false)
@@ -48,6 +49,7 @@ fun CustomEndRowDropDown(
                     Text(AppLanguage.DETAILS, style = AppTextStyle.latoMediumFontStyle)
                 },
                 onClick = {
+                    onClickDetail()
                     isExpanded = false
                 }
             )
