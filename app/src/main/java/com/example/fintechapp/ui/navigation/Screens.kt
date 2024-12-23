@@ -20,4 +20,10 @@ open class Screens(val route: String) {
         fun createRoute(agencyCode: String): String = "DetailAgent/$agencyCode"
     }
 
+    object CreateProduct : Screens("CreateProduct")
+
+    object UpdateProduct : Screens("UpdateProduct/{productId}"){
+        fun createRoute(productId: Int): String = "UpdateProduct/$productId"
+    }
+
 }

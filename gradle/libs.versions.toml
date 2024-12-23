@@ -13,6 +13,7 @@ navigationCompose = "2.8.4"
 googleGmsGoogleServices = "4.4.2"
 firebaseAuth = "23.1.0"
 
+
 # Data table
 data-table = "0.10.0"
 
@@ -21,6 +22,9 @@ retrofit = "2.11.0"
 retrofit-kotlinx-serialization-converter = "0.8.0"
 okhttp-logging-interceptor = "4.12.0"
 converterGson = "2.9.0"
+
+#coil
+coil = "2.6.0"
 
 
 [libraries]
@@ -50,6 +54,9 @@ retrofit-converter-gson = { module = "com.squareup.retrofit2:converter-gson", ve
 
 #data table
 data-table-material3 = { group = "com.seanproctor", name = "data-table", version.ref = "data-table" }
+
+#coil
+coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 
 
 [plugins]

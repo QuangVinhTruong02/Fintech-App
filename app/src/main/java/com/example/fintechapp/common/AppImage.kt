@@ -7,4 +7,6 @@ object AppImage {
     val imgLogoHeader: Int = R.drawable.img_logo_header
     val imgOnBoarding: Int = R.drawable.img_onboarding
     val imgAvatar: Int = R.drawable.img_avatar
+    val imgNoImage: Int = R.drawable.img_no_image
+    val imgUploadImage: Int = R.drawable.img_upload_image
 }

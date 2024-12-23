@@ -1,15 +1,13 @@
 package com.example.fintechapp.ui.components
 
 
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
@@ -47,7 +45,8 @@ fun CustomTextInput(
     isPasswordVisible: Boolean = false,
     readOnly: Boolean = false,
     modifier: Modifier = Modifier,
-    enable: Boolean = true
+    enable: Boolean = true,
+    singleLine: Boolean = true
 ) {
     var errorText by remember { mutableStateOf<String?>(null) }
     OutlinedTextField(
@@ -60,6 +59,7 @@ fun CustomTextInput(
         },
         modifier = modifier
             .fillMaxWidth()
+//            .wrapContentHeight()
 //            .heightIn(min = 48.dp)
             .clickable {
                 onTapTextField?.invoke()
@@ -75,6 +75,8 @@ fun CustomTextInput(
         isError = errorText != null,
         enabled = enable,
         readOnly = readOnly,
+        maxLines = 3,
+        minLines = 3,
         visualTransformation = if (isPasswordVisible) PasswordVisualTransformation() else VisualTransformation.None,
         interactionSource = remember { MutableInteractionSource() }.also { interactionSource ->
             LaunchedEffect(interactionSource) {
@@ -97,7 +99,7 @@ fun CustomTextInput(
             }
         },
         keyboardOptions = KeyboardOptions(keyboardType = keyBoardType),
-        singleLine = true,
+        singleLine = singleLine,
         leadingIcon = leadingIcon?.let {
             {
                 Icon(

@@ -1,5 +1,6 @@
 package com.example.fintechapp.repository
 
+import android.util.Log
 import com.example.fintechapp.common.AppShared
 import com.example.fintechapp.data.remote.ResultApi
 import com.example.fintechapp.data.remote.service.auth.AuthApiService

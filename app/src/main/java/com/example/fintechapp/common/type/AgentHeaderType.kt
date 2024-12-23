@@ -1,21 +1,20 @@
 package com.example.fintechapp.common.type
 
 import com.example.fintechapp.common.AppLanguage
-import com.example.fintechapp.data.response.AgencyResponse
 
 enum class AgentHeaderType {
-    AgentName,
-    AgentCode,
-    PhoneNumber,
-    City,
-    FarmersCount;
+    AGENT_NAME,
+    AGENT_CODE,
+    PHONE_NUMBER,
+    CITY,
+    FARMER_COUNT;
 
     val title: String
         get() = when (this) {
-            AgentName -> AppLanguage.AGENT_NAME
-            AgentCode -> AppLanguage.AGENT_CODE
-            PhoneNumber -> AppLanguage.PHONE_NUMBER
-            City -> AppLanguage.CITY
-            FarmersCount -> AppLanguage.FARMERS_COUNT
+            AGENT_NAME -> AppLanguage.AGENT_NAME
+            AGENT_CODE -> AppLanguage.AGENT_CODE
+            PHONE_NUMBER -> AppLanguage.PHONE_NUMBER
+            CITY -> AppLanguage.CITY
+            FARMER_COUNT -> AppLanguage.FARMERS_COUNT
         }
 }

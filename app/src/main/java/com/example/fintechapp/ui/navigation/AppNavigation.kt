@@ -57,6 +57,14 @@ class AppNavigation(
         navController.navigate(Screens.DetailAgent.createRoute(agencyCode))
     }
 
+    fun navigateToCreateProduct(){
+        navController.navigate(Screens.CreateProduct.route)
+    }
+
+    fun navigateToUpdateProduct(productId: Int){
+        navController.navigate(Screens.UpdateProduct.createRoute(productId))
+    }
+
     fun previousBackStackAgency(hasNewData: Boolean) {
         navController.previousBackStackEntry?.savedStateHandle?.set(
             AppConst.AGENCY_RETURN_KEY,

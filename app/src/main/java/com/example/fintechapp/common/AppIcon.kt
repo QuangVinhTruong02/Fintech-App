@@ -39,4 +39,5 @@ object AppIcon {
     val icCheck = R.drawable.ic_check
     val icRemove = R.drawable.ic_remove
     val icDropDown = R.drawable.ic_dropdown
+    val icTimer = R.drawable.ic_timer
 }

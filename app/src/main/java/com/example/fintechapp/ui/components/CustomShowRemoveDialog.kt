@@ -20,11 +20,10 @@ fun CustomShowRemoveDialog(
     onDismiss: () -> Unit,
     onConfirm: () -> Unit,
 ) {
-    AlertDialog( // 3
-        onDismissRequest = { // 4
+    AlertDialog(
+        onDismissRequest = {
             onDismiss()
         },
-        // 5
         title = {
             Text(
                 text = title,
@@ -32,7 +31,7 @@ fun CustomShowRemoveDialog(
             )
         },
         text = { Text(text = message, style = AppTextStyle.latoMediumFontStyle) },
-        confirmButton = { // 6
+        confirmButton = {
             Button(
                 onClick = {
                     onConfirm()

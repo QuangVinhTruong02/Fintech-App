@@ -1,5 +1,6 @@
 package com.example.fintechapp.ui.components
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -12,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.example.fintechapp.common.AppColor
 import com.example.fintechapp.common.AppTextStyle
@@ -19,12 +21,13 @@ import com.example.fintechapp.ui.base.UIButtonState
 
 @Composable
 fun CustomButton(
-    buttonColor: Color,
+    buttonColor: Color = AppColor.darkBlue,
     disabledButtonColor: Color = AppColor.darkBlue.copy(alpha = 0.2f),
     contentText: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    buttonState: UIButtonState = UIButtonState.Enable
+    buttonState: UIButtonState = UIButtonState.Enable,
+    showContentToast: String? = null
 ) {
     Button(
         onClick = { if (buttonState == UIButtonState.Enable) onClick() },
@@ -33,7 +36,7 @@ fun CustomButton(
             disabledContainerColor = disabledButtonColor
         ),
         modifier = modifier.heightIn(min = 45.dp),
-        enabled = buttonState == UIButtonState.Enable,
+        enabled = buttonState == UIButtonState.Enable || buttonState == UIButtonState.Success,
         shape = RoundedCornerShape(8.dp)
     ) {
         when (buttonState) {
@@ -53,6 +56,19 @@ fun CustomButton(
             }
 
             is UIButtonState.Disable -> {
+                Text(
+                    contentText,
+                    style = AppTextStyle.latoBoldFontStyle.copy(color = AppColor.white)
+                )
+            }
+
+            is UIButtonState.Success -> {
+
+                if (showContentToast != null) {
+                    Toast.makeText(LocalContext.current, showContentToast, Toast.LENGTH_SHORT)
+                        .show()
+                }
+
                 Text(
                     contentText,
                     style = AppTextStyle.latoBoldFontStyle.copy(color = AppColor.white)

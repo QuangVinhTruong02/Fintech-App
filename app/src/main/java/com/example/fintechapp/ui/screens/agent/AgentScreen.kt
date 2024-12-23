@@ -31,7 +31,10 @@ fun AgentScreen(
             null
         )?.collectAsState()
 
-    LaunchedEffect(updateData) {
+    LaunchedEffect(Unit) {
+
+        viewModel.onInit()
+
         updateData?.value?.let {
             viewModel.fetchAgencies("")
             appState.appNavigation.navController.currentBackStackEntry?.savedStateHandle?.remove<Boolean?>(

@@ -1,11 +1,6 @@
 package com.example.fintechapp.common.type
 
 import com.example.fintechapp.common.AppLanguage
-import com.example.fintechapp.common.type.AgentHeaderType.AgentCode
-import com.example.fintechapp.common.type.AgentHeaderType.AgentName
-import com.example.fintechapp.common.type.AgentHeaderType.City
-import com.example.fintechapp.common.type.AgentHeaderType.FarmersCount
-import com.example.fintechapp.common.type.AgentHeaderType.PhoneNumber
 
 enum class ClientOfAgentHeaderType {
     CLIENT,

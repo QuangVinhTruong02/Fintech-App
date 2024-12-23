@@ -6,10 +6,16 @@ import com.example.fintechapp.common.AppShared
 import com.example.fintechapp.data.remote.ApiInterceptor
 import com.example.fintechapp.data.remote.service.agency.AgencyApiService
 import com.example.fintechapp.data.remote.service.auth.AuthApiService
+import com.example.fintechapp.data.remote.service.configuration.ConfigurationApiService
 import com.example.fintechapp.data.remote.service.location.LocationApiService
+import com.example.fintechapp.data.remote.service.product.CodeProductApiService
+import com.example.fintechapp.data.remote.service.upload.UploadApiService
 import com.example.fintechapp.repository.AgencyRepository
 import com.example.fintechapp.repository.AuthRepository
+import com.example.fintechapp.repository.CodeProductRepository
+import com.example.fintechapp.repository.ConfigurationRepository
 import com.example.fintechapp.repository.LocationRepository
+import com.example.fintechapp.repository.UploadRepository
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
@@ -63,6 +69,42 @@ object AppModule {
 
     val locationRepository: LocationRepository by lazy{
         LocationRepository(locationApiService)
+    }
+
+    private val configurationApiService: ConfigurationApiService by lazy {
+        Retrofit.Builder().baseUrl(AppConst.BASE_CONFIGURATION_URL)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .client(okHttpClient)
+            .build()
+            .create(ConfigurationApiService::class.java)
+    }
+
+    val configurationRepository: ConfigurationRepository by lazy{
+        ConfigurationRepository(configurationApiService)
+    }
+
+    private val codeProductApiService: CodeProductApiService by lazy {
+        Retrofit.Builder().baseUrl(AppConst.BASE_AGENCY_URL)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .client(okHttpClient)
+            .build()
+            .create(CodeProductApiService::class.java)
+    }
+
+    val codeProductRepository: CodeProductRepository by lazy{
+        CodeProductRepository(codeProductApiService)
+    }
+
+    private val uploadApiService: UploadApiService by lazy {
+        Retrofit.Builder().baseUrl(AppConst.BASE_API)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .client(okHttpClient)
+            .build()
+            .create(UploadApiService::class.java)
+    }
+
+    val uploadRepository: UploadRepository by lazy{
+        UploadRepository(uploadApiService)
     }
 
     fun initContext(context: Context) {

@@ -97,7 +97,7 @@ class AgentViewModel(
     private val _isOpenSheet = MutableStateFlow<Boolean>(false)
     val isOpenSheet: StateFlow<Boolean> = _isOpenSheet
 
-    init {
+    fun onInit() {
         fetchAgencies(_searchTextInput.value)
         handleSearchInput()
         fetchProvinces()
@@ -133,6 +133,10 @@ class AgentViewModel(
         }else{
             onClearInput()
         }
+    }
+
+    fun onTurnOffShowDialog(){
+        _uiAgencyListState.value = UIState.Empty
     }
 
     fun fetchAgencies(query: String) {
@@ -187,21 +191,22 @@ class AgentViewModel(
             page += 1
             count += 10
             setValueForHasData()
-            fetchAgencies("")
+            fetchAgencies(_searchTextInput.value)
         }
     }
 
-    fun onRemoveInput() {
-        _searchTextInput.value = ""
-    }
 
     fun onPageDecrement() {
         if (page > 1) {
             page -= 1
             count -= 10
             setValueForHasData()
-            fetchAgencies("")
+            fetchAgencies(_searchTextInput.value)
         }
+    }
+
+    fun onRemoveInput() {
+        _searchTextInput.value = ""
     }
 
     fun setIsExpandedProvince(value: Boolean) {

@@ -8,8 +8,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentActivity
 import com.example.fintechapp.di.AppModule
 import com.example.fintechapp.ui.base.DtgComposeApp
-import com.example.fintechapp.ui.screens.detail_agent.DetailAgentScreen
-import com.example.fintechapp.ui.screens.home.HomeScreen
+import com.example.fintechapp.ui.screens.create_code_product.CreateCodeProductScreen
 
 class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +19,9 @@ class MainActivity : FragmentActivity() {
             val context = LocalContext.current
             AppModule.initContext(context)
             DtgComposeApp()
-//            DetailAgentScreen()
+//            SettingScreen()
+//            CodeProductScreen()
+//            CreateCodeProductScreen()
         }
     }
 }

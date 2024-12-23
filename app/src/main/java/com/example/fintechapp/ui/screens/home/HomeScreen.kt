@@ -32,7 +32,6 @@ import com.example.fintechapp.ui.screens.agent.AgentScreen
 import com.example.fintechapp.ui.screens.home.components.DropDownAvatar
 import com.example.fintechapp.ui.screens.home.components.HomeDrawerContent
 import com.example.fintechapp.ui.screens.home.components.HomeView
-import com.example.fintechapp.ui.screens.qr_code_product.QRCodeProductScreen
 import kotlinx.coroutines.launch
 
 @Composable
@@ -41,7 +40,9 @@ fun HomeScreen(
     viewModel: HomeViewModel = viewModel(),
     onNavigateToSignIn: () -> Unit,
     onNavigateToCreateAgent: (String) -> Unit,
-    onNavigateDetailAgent:(String) -> Unit,
+    onNavigateDetailAgent: (String) -> Unit,
+    onNavigateToCreateProduct: () -> Unit,
+    onNavigateToUpdateProduct: (Int) -> Unit,
 ) {
 
     val drawerState = rememberDrawerState(
@@ -100,6 +101,8 @@ fun HomeScreen(
                 viewModel = viewModel,
                 onNavigateToCreateAgent = onNavigateToCreateAgent,
                 onNavigateDetailAgent = onNavigateDetailAgent,
+                onNavigateToCreateProduct = onNavigateToCreateProduct,
+                onNavigateToUpdateProduct = onNavigateToUpdateProduct
             )
         }
     }

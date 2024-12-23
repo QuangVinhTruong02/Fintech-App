@@ -13,8 +13,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.fintechapp.common.type.PageType
 import com.example.fintechapp.ui.base.DtgAppState
 import com.example.fintechapp.ui.screens.agent.AgentScreen
+import com.example.fintechapp.ui.screens.code_product.CodeProductScreen
 import com.example.fintechapp.ui.screens.home.HomeViewModel
-import com.example.fintechapp.ui.screens.qr_code_product.QRCodeProductScreen
+import com.example.fintechapp.ui.screens.settings.SettingScreen
 
 @Composable
 fun HomeView(
@@ -22,7 +23,9 @@ fun HomeView(
     appState: DtgAppState,
     onNavigateToCreateAgent: (String) -> Unit,
     onNavigateDetailAgent: (String) -> Unit,
+    onNavigateToCreateProduct: () -> Unit,
     viewModel: HomeViewModel,
+    onNavigateToUpdateProduct: (Int) -> Unit
 ) {
     val indexPageType: PageType by viewModel.indexPageType.collectAsStateWithLifecycle()
 
@@ -37,8 +40,12 @@ fun HomeView(
                 onNavigateDetailAgent = onNavigateDetailAgent,
                 appState = appState
             )
-
-            PageType.QRCodeProduct -> QRCodeProductScreen()
+            PageType.QRCodeProduct -> CodeProductScreen(
+                appState = appState,
+                onNavigateToCreateProduct = onNavigateToCreateProduct,
+                onNavigateToUpdateProduct = onNavigateToUpdateProduct
+            )
+            PageType.Setting -> SettingScreen()
             else -> {
                 Text("NO PATH RESULT")
             }

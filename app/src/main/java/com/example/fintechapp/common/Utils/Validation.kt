@@ -44,4 +44,11 @@ class Validation {
         }
         return null
     }
+
+    fun validateNumber(value: String): String? {
+        if (value.isEmpty()) {
+            return AppLanguage.QUANTITY_MUST_BE_A_NUMBER
+        }
+        return null
+    }
 }

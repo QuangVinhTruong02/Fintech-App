@@ -42,15 +42,6 @@ fun CustomErrorDialog(
                 modifier = Modifier.padding(16.dp),
                 verticalArrangement = Arrangement.Center
             ) {
-                Icon(
-                    painter = painterResource(id = AppIcon.icClose),
-                    contentDescription = "Icon",
-                    tint = Color.Unspecified,
-                    modifier = Modifier
-                        .size(50.dp)
-                        .fillMaxWidth()
-                        .align(Alignment.CenterHorizontally)
-                )
                 Text(
                     text = title,
                     style = AppTextStyle.latoBoldFontStyle.copy(fontSize = 20.sp),

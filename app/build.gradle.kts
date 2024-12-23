@@ -29,6 +29,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
         }
     }
     compileOptions {
@@ -70,8 +71,10 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(libs.coil)
     implementation ("androidx.datastore:datastore-preferences:1.1.1")
     implementation("com.seanproctor:data-table:0.10.0")
+    implementation("androidx.fragment:fragment:1.3.0")
 //    //Retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)

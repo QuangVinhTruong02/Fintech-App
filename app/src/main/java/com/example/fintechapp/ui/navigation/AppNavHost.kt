@@ -12,10 +12,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.fintechapp.common.AppConst
 import com.example.fintechapp.ui.base.DtgAppState
+import com.example.fintechapp.ui.screens.create_code_product.CreateCodeProductScreen
 import com.example.fintechapp.ui.screens.detail_agent.DetailAgentScreen
 import com.example.fintechapp.ui.screens.home.HomeScreen
 import com.example.fintechapp.ui.screens.onboarding.OnboardingScreen
 import com.example.fintechapp.ui.screens.splash.SplashScreen
+import com.example.fintechapp.ui.screens.update_code_product.UpdateCodeProductScreen
 import com.example.fintechapp.ui.sign_in.SignInScreen
 
 
@@ -66,38 +68,49 @@ fun AppNavHost(
                 onNavigateToSignIn = appNavigation::navigateToSignIn,
                 onNavigateToCreateAgent = appNavigation::navigateToCreateAgent,
                 onNavigateDetailAgent = appNavigation::navigateToDetailAgent,
+                onNavigateToCreateProduct = appNavigation::navigateToCreateProduct,
+                onNavigateToUpdateProduct = appNavigation::navigateToUpdateProduct,
             )
         }
-
-//        composable(
-//            Screens.CreateAgent.route,
-//            arguments = listOf(navArgument("agencyId") { type = NavType.StringType })
-//        ) { entry ->
-//            val agencyId = entry.arguments?.getString("agencyId")
-//            if(agencyId != null){
-//                CreateAgentScreen(
-//                    onNavigateToBack = appNavigation::navigateBack,
-//                    onPreviousBackStackAgency = appNavigation::previousBackStackAgency,
-//                    agencyId = agencyId
-//                )
-//            }else{
-//                Log.d("NavigationError", "agencyId is null or invalid")
-//            }
-//        }
 
         composable(
             Screens.DetailAgent.route,
             arguments = listOf(navArgument("agencyCode") { type = NavType.StringType })
         ) { entry ->
             val agencyCode = entry.arguments?.getString("agencyCode")
-            if(agencyCode != null){
+            if (agencyCode != null) {
                 DetailAgentScreen(
                     appState = appState,
                     onNavigateBack = appNavigation::navigateBack,
                     agencyCode = agencyCode
                 )
-            }else{
+            } else {
                 Log.d("NavigationError", "agencyId is null or invalid")
+            }
+        }
+
+        composable(
+            Screens.CreateProduct.route,
+        ) {
+            CreateCodeProductScreen(
+                appState = appState,
+                onNavigateBack = appNavigation::navigateBack
+            )
+        }
+
+        composable(
+            Screens.UpdateProduct.route,
+            arguments = listOf(navArgument("productId") { type = NavType.IntType })
+        ) { entry ->
+            val productId = entry.arguments?.getInt("productId")
+            if (productId != null) {
+                UpdateCodeProductScreen(
+                    appState = appState,
+                    onNavigateBack = appNavigation::navigateBack,
+                    productId = productId
+                )
+            } else {
+                Log.d("NavigationError", "productId is null or invalid")
             }
         }
     }

@@ -21,7 +21,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.fintechapp.common.AppColor
 import com.example.fintechapp.common.AppIcon
 import com.example.fintechapp.common.AppLanguage
@@ -40,7 +39,6 @@ fun AgentView(
     onNavigateDetailAgent: (String) -> Unit
 ) {
     val searchTextInput: String by viewModel.searchTextInput.collectAsStateWithLifecycle()
-    val uiAgencyListState: UIState<List<AgencyResponse>> by viewModel.uiAgencyListState.collectAsStateWithLifecycle()
     Column(
         modifier = Modifier.verticalScroll(rememberScrollState())
     ) {
@@ -87,33 +85,7 @@ fun AgentView(
             onNavigateToCreateAgent = onNavigateToCreateAgent,
             onNavigateDetailAgent = onNavigateDetailAgent
         )
-        if (uiAgencyListState is UIState.Loading) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 10.dp, bottom = 10.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                CircularProgressIndicator(
-                    modifier = Modifier.size(32.dp),
-                    color = AppColor.darkBlue,
-                    strokeWidth = 3.dp
-                )
-            }
-        }
-        if (uiAgencyListState is UIState.Empty || (uiAgencyListState is UIState.Success && (uiAgencyListState as UIState.Success).data!!.isEmpty())) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 10.dp, bottom = 10.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    AppLanguage.NO_DATA_AVAILABLE,
-                    style = AppTextStyle.latoBoldFontStyle.copy(color = AppColor.lightGrey)
-                )
-            }
-        }
+        AgentState(viewModel)
         AgentTableFooter(viewModel)
     }
 }
